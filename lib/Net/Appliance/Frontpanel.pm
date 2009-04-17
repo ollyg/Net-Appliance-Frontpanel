@@ -8,7 +8,6 @@ use Carp qw(croak);
 has 'configfile' => (
     is => 'ro',
     isa => 'Str',
-    default => '/etc/netdisco/netdisco.conf', # XXX
     required => 1,
 );
 
