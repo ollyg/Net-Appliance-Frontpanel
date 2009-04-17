@@ -6,12 +6,6 @@ with qw(
     Net::Appliance::Frontpanel::Personality
 );
 
-has 'configfile' => (
-    is => 'ro',
-    isa => 'Str',
-    required => 1,
-);
-
 sub BUILD {
     my ($self, $params) = @_;
 

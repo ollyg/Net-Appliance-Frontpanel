@@ -18,10 +18,6 @@ has 'dbh' => (
     lazy => 1,
 );
 
-sub DEMOLISH {
-    (shift)->dbh->disconnect;
-};
-
 no Moose::Role;
 1;
 __END__

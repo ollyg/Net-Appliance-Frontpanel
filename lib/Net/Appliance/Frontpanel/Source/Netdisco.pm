@@ -27,6 +27,17 @@ sub device_modules {
     );
 }
 
+# return ports spec for a device
+sub device_ports {
+    my $ports = (shift)->dbh->selectall_arrayref(
+        'SELECT * FROM device_port WHERE ip = ?',
+        { Slice => {} },
+        shift
+    );
+
+    return { map {$_->{port} => $_} @$ports };
+}
+
 no Moose::Role;
 1;
 __END__
