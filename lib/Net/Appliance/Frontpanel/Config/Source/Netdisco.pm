@@ -1,4 +1,4 @@
-package Net::Appliance::Frontpanel::Source::Netdisco;
+package Net::Appliance::Frontpanel::Config::Source::Netdisco;
 use Moose::Role;
 
 with 'Net::Appliance::Frontpanel::Helper::DBI';
