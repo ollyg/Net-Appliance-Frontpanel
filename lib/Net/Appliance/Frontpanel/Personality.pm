@@ -1,21 +1,17 @@
 package Net::Appliance::Frontpanel::Personality;
 use Moose::Role;
 
-use Class::MOP ();
-use Carp qw(croak);
+extends 'MooseX::Object::Pluggable';
 
 sub apply_personality {
-    my ($self, $ns, $pkg)  = @_;
-    $ns ||= 'Plugin';
+    my ($self, $pkg, $ns)  = @_;
 
-    # namespace with :: is assumed not to be relative
-    my $parent = ($ns =~ m/::/ ? '' :
-        (blessed $self) . '::');
+    my $ns_backup = $self->_plugin_ns;
+    $self->_plugin_ns($ns) if $ns;
+    $self->apply_plugin($pkg);
+    $self->_plugin_ns($ns_backup) if $ns;
 
-    my $role = "${parent}${ns}::${pkg}";
-    eval { Class::MOP::load_class($role) };
-    croak "Failed to load role: ${role} $@\n" if $@;
-    $role->meta->apply($self);
+    return $self;
 }   
 
 no Moose::Role;

@@ -19,7 +19,7 @@ sub BUILD {
 
     # load up the image type personality
     my $img_type = $params->{config}->stash->{img_type} || 'Imager';
-    $self->apply_personality( (blessed $self), $img_type );
+    $self->apply_personality($img_type, 'Image');
 );
 
 no Moose;

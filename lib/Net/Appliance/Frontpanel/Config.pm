@@ -10,7 +10,7 @@ sub BUILD {
 
     # load up the data source personality
     $params->{source} ||= 'Netdisco';
-    $self->apply_personality('Source', $params->{source});
+    $self->apply_personality($params->{source}, 'Source');
 }
 
 no Moose;
