@@ -19,9 +19,7 @@ has spec => (
 
 sub _build_spec {
     my $self = shift;
-    return do ("/home/oliver/data/". $self->ip ."_spec.pl");
-    # FIXME
-    # return $self->config->load_spec($self->ip);
+    return $self->config->load_spec($self->ip);
 }
 
 sub BUILD {

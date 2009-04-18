@@ -3,20 +3,6 @@ use Moose;
 
 extends 'Net::Appliance::Frontpanel::Component';
 
-has ports => (
-    is => 'ro',
-    isa => 'HashRef[HashRef]',
-    auto_deref => 1,
-    lazy_build => 1,
-);
-
-sub _build_ports {
-    my $self = shift;
-    return do ("/home/oliver/data/port_db.pl");
-    # FIXME
-    # return $self->config->load_spec($self->ip);
-}
-
 has spec => (
     is => 'ro',
     isa => 'HashRef[Any]',
@@ -27,10 +13,10 @@ sub BUILD {
     my ($self, $params) = @_;
 
     my $status = ($self->spec->{dummy} ? 'empty' : 'up'); # FIXME
-    my $file = $self->ports->{ $self->spec->{type} }->{ $status };
+    my $file = $self->config->port_db->{ $self->spec->{type} }->{ $status };
     return unless $file;
 
-    $self->image->read(file => "/home/oliver/images/". $file);
+    $self->image->read(file => $self->config->image_loc($file));
     # FIXME
 }
 

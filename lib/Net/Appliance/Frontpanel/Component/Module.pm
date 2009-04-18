@@ -13,8 +13,7 @@ has spec => (
 sub BUILD {
     my ($self, $params) = @_;
 
-    $self->image->read(file => "/home/oliver/images/". $self->spec->{image});
-    # FIXME
+    $self->image->read(file => $self->config->image_loc($self->spec->{image}));
 
     foreach my $item (@{$self->spec->{modules}}) {
         my $module = Net::Appliance::Frontpanel::Component::Module->new({
