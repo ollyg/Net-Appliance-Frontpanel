@@ -7,7 +7,7 @@ use Imager;
 
 sub _build_image {
     my $self = shift;
-    return Imager->new();
+    return Imager->new(xsize => 1, ysize => 1, channels => 4);
 }
 
 sub paste_into {
@@ -16,9 +16,10 @@ sub paste_into {
 
     my ($parent, $child, $x, $y)
         = @{$params}{qw(parent child x y)};
+    $x ||= 0; $y ||= 0;
 
-    my ($cw, $ch) = ($child->getwidth, $child->getheight);
-    my ($pw, $ph) = ($parent->getwidth, $parent->getheight);
+    my ($cw, $ch) = ($child->getwidth  || 0, $child->getheight  || 0);
+    my ($pw, $ph) = ($parent->getwidth || 0, $parent->getheight || 0);
 
     my $newwidth  = max ($pw, ($x + $cw));
     my $newheight = max ($ph, ($y + $ch));

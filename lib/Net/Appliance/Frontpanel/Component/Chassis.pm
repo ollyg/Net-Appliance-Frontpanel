@@ -2,6 +2,7 @@ package Net::Appliance::Frontpanel::Component::Chassis;
 use Moose;
 
 extends 'Net::Appliance::Frontpanel::Component';
+use Net::Appliance::Frontpanel::Component::Module;
 
 has ip => (
     is => 'ro',

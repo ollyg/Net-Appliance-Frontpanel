@@ -7,8 +7,6 @@ has image => (
     lazy_build => 1,
 );
 
-requires qw(_build_image paste_into);
-
 sub paste_into_self {
     my $self = shift;
     return $self->paste_into(@_, parent => $self->image);
