@@ -1,13 +1,13 @@
-package Net::Appliance::Frontpanel::Image;
+package Net::Appliance::Frontpanel::Image::PNG;
 use Moose::Role;
 
-use List::MoreUtils qw(max);
+extends 'Net::Appliance::Frontpanel::Image';
+use Imager;
 
-has image => (
-    is => 'ro',
-    isa => 'Object',
-    lazy_build => 1,
-);
+sub _build_image {
+    my $self = shift;
+    return Imager->new();
+}
 
 sub paste_into {
     my $self = shift;
@@ -30,12 +30,6 @@ sub paste_into {
     return $self
 }
 
-sub paste_into_self {
-    my $self = shift;
-    return $self->paste_into(@_, parent => $self->image);
-}
-
 no Moose::Role;
 1;
 __END__
-

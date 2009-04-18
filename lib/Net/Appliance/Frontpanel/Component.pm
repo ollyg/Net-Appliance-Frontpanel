@@ -3,7 +3,8 @@ use Moose;
 
 with qw(
     Net::Appliance::Frontpanel::Personality
-    Net::Appliance::Frontpanel::ImageMap
+    Net::Appliance::Frontpanel::Component::ImageMap
+    Net::Appliance::Frontpanel::Component::Transforms
 );
 
 has ip => (
@@ -55,7 +56,7 @@ sub BUILD {
     my ($self, $params) = @_;
 
     # load up the image type personality
-    $params->{img_type} ||= 'PNG';
+    $params->{img_type} ||= 'Imager';
     $self->apply_personality(
         'Net::Appliance::Frontpanel::Image',
         $params->{img_type}
