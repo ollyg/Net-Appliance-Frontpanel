@@ -1,4 +1,4 @@
-package Net::Appliance::Frontpanel::Chassis;
+package Net::Appliance::Frontpanel::Component::Chassis;
 use Moose;
 
 extends 'Net::Appliance::Frontpanel::Component';
@@ -18,40 +18,30 @@ has spec => (
 
 sub _build_spec {
     my $self = shift;
-    return $self->config->load_spec($self->ip);
-}
-
-sub transpose_and_paste {
-    my $self = shift;
-    my $params = {@_};
-
-    my $text = $self->transpose_map(
-        text => $params->{child}->{imagemap},
-        x    => $params->{x},
-        y    => $params->{y},
-    );
-    $self->imagemap( $self->imagemap .= $text );
-
-    $self->paste_into_self(
-        child  => $params->{child}->{image},
-        x      => $params->{x},
-        y      => $params->{y},
-    );
-
-    return $self;
+    return do ("/home/oliver/data/". $self->ip ."_spec.pl");
+    # return $self->config->load_spec($self->ip);
 }
 
 sub BUILD {
     my ($self, $params) = @_;
 
     foreach my $device ($self->spec) {
-        my $module = $self->make_module($device);
-        $self->transpose_and_paste(
-            child => $module,
-            y     => ($self->image->getheight || 0),
+        my $current_height = ($self->image->getheight || 0);
+
+        my $module = Net::Appliance::Frontpanel::Component::Module->new({
+            config => $self->config, spec => $device });
+        
+        # shift imagemap down, and copy
+        $module->transpose_map(0, $current_height);
+        $self->imagemap( $self->imagemap . $module->imagemap );
+
+        # paste module
+        $self->paste_into_self(
+            child => $module->image,
+            y     => $current_height,
         );
     }
-);
+}
 
 no Moose;
 __PACKAGE__->meta->make_immutable;

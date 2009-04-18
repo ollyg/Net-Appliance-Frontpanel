@@ -11,13 +11,19 @@ has 'config' => (
     weak_ref => 1,
 );
 
+has 'image_type' => (
+    is => 'ro',
+    isa => 'Str',
+    lazy => 1,
+    default => sub{ (shift)->config->stash->{fp_image_type} || 'Imager' },
+);
+
 sub BUILD {
     my ($self, $params) = @_;
 
     # load up the image type personality
-    my $img_type = $self->config->stash->{fp_img_type} || 'Imager';
-    $self->apply_personality($img_type, 'Image');
-);
+    $self->apply_personality($self->image_type, 'Image');
+}
 
 no Moose;
 __PACKAGE__->meta->make_immutable;

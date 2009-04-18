@@ -1,7 +1,8 @@
-package Net::Appliance::Frontpanel::Image::PNG;
+package Net::Appliance::Frontpanel::Component::Image::Imager;
 use Moose::Role;
 
-with 'Net::Appliance::Frontpanel::Image';
+with 'Net::Appliance::Frontpanel::Component::Image::Base';
+use List::Util qw(max);
 use Imager;
 
 sub _build_image {
@@ -14,7 +15,7 @@ sub paste_into {
     my $params = {@_};
 
     my ($parent, $child, $x, $y)
-        = @{$params}{qw(parent, child, x, y)};
+        = @{$params}{qw(parent child x y)};
 
     my ($cw, $ch) = ($child->getwidth, $child->getheight);
     my ($pw, $ph) = ($parent->getwidth, $parent->getheight);

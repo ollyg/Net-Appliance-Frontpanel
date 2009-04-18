@@ -1,4 +1,4 @@
-package Net::Appliance::Frontpanel::ImageMap;
+package Net::Appliance::Frontpanel::Component::ImageMap;
 use Moose::Role;
 
 has imagemap => (
@@ -7,41 +7,35 @@ has imagemap => (
     default => sub { '' },
 );
 
-sub rotate_map_90 {
-    my ($self, $text) = @_;
+sub transform_map {
+    my ($self, $process, $x, $y) = @_;
 
-    my $text =~ s{ coords="(\d+),(\d+),(\d+),(\d+)" }
-                 {' coords="'. (join ',', -$2+$height,$1,-$4+$height,$3) .'" '}eg;
-    return $text;
+    $x ||= ($self->image->getwidth  || 0);
+    $y ||= ($self->image->getheight || 0);
+    my $text = $self->imagemap;
+
+    $text =~ s{ coords="(\d+),(\d+),(\d+),(\d+)" }{$process}eeg;
+    $self->imagemap($text);
+}
+
+sub rotate_map_90 {
+    my $self = shift;
+    $self->transform_map(q{' coords="'. (join ',', -$2+$x,$1,-$4+$y,$3) .'" '});
 }
 
 sub rotate_map_180 {
-    my ($self, $text) = @_;
-
-    my $text =~ s{ coords="(\d+),(\d+),(\d+),(\d+)" }
-                 {' coords="'. (join ',', -$1+$width,-$2+$height,-$3+$width,-$4+$height) .'" '}eg;
-    return $text;
+    my $self = shift;
+    $self->transform_map(q{' coords="'. (join ',', -$1+$x,-$2+$y,-$3+$x,-$4+$y) .'" '});
 }
 
 sub rotate_map_270 {
-    my ($self, $text) = @_;
-
-    my $text =~ s{ coords="(\d+),(\d+),(\d+),(\d+)" }
-                 {' coords="'. (join ',', $2,-$1+$width,$4,-$3+$width) .'" '}eg;
-    return $text;
+    my $self = shift;
+    $self->transform_map(q{' coords="'. (join ',', $2,-$1+$x,$4,-$3+$x) .'" '});
 }
 
 sub transpose_map {
     my $self = shift;
-    my $params = {@_};
-
-    my $x = $params->{x} || 0;
-    my $y = $params->{y} || 0;
-    my $text = $params->{text};
-
-    $text =~ s{ coords="(\d+),(\d+),(\d+),(\d+)" }
-              {' coords="'. (join ',', $1+$x,$2+$y,$3+$x,$4+$y) .'" '}eg;
-    return $text;
+    $self->transform_map(q{' coords="'. (join ',', $1+$x,$2+$y,$3+$x,$4+$y) .'" '}, @_);
 }
 
 no Moose::Role;

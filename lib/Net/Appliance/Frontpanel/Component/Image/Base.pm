@@ -1,13 +1,13 @@
-package Net::Appliance::Frontpanel::Image;
+package Net::Appliance::Frontpanel::Component::Image::Base;
 use Moose::Role;
-
-use List::MoreUtils qw(max);
 
 has image => (
     is => 'ro',
     isa => 'Object',
     lazy_build => 1,
 );
+
+requires qw(_build_image paste_into);
 
 sub paste_into_self {
     my $self = shift;
