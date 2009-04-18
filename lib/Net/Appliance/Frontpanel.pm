@@ -2,7 +2,7 @@ package Net::Appliance::Frontpanel;
 use Moose;
 
 with qw(
-    Net::Appliance::Frontpanel::ConfigStash
+    Net::Appliance::Frontpanel::Config
     Net::Appliance::Frontpanel::Personality
 );
 
