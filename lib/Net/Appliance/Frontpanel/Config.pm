@@ -2,7 +2,7 @@ package Net::Appliance::Frontpanel::Config;
 use Moose;
 
 with 'Net::Appliance::Frontpanel::Personality';
-with 'Net::Appliance::Frontpanel::ConfigFile';
+with 'Net::Appliance::Frontpanel::Config::File';
 # with 'Net::Appliance::Frontpanel::Cache';
 
 sub BUILD {
