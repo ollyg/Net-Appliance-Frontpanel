@@ -2,7 +2,7 @@ package Net::Appliance::Frontpanel::Config;
 use Moose;
 
 with 'Net::Appliance::Frontpanel::Personality';
-with 'Net::Appliance::Frontpanel::Config::File';
+with 'Net::Appliance::Frontpanel::Config::External';
 with 'Net::Appliance::Frontpanel::Config::Cache';
 
 has 'source' => (
