@@ -1,11 +1,8 @@
 package Net::Appliance::Frontpanel::Component;
 use Moose;
 
-with qw(
-    Net::Appliance::Frontpanel::Personality
-    Net::Appliance::Frontpanel::Component::ImageMap
-    Net::Appliance::Frontpanel::Component::Transforms
-);
+with 'Net::Appliance::Frontpanel::Personality';
+with 'Net::Appliance::Frontpanel::Component::ImageMap';
 
 has 'config' => (
     is => 'ro',
@@ -18,7 +15,7 @@ sub BUILD {
     my ($self, $params) = @_;
 
     # load up the image type personality
-    my $img_type = $params->{config}->stash->{img_type} || 'Imager';
+    my $img_type = $self->config->stash->{fp_img_type} || 'Imager';
     $self->apply_personality($img_type, 'Image');
 );
 

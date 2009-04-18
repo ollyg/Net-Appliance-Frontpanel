@@ -8,7 +8,9 @@ sub apply_personality {
 
     my $ns_backup = $self->_plugin_ns;
     $self->_plugin_ns($ns) if $ns;
+    $self->meta->make_mutable;
     $self->load_plugin($pkg);
+    $self->meta->make_immutable;
     $self->_plugin_ns($ns_backup) if $ns;
 
     return $self;

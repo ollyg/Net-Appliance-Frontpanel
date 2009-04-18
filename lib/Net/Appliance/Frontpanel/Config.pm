@@ -14,11 +14,11 @@ has 'source' => (
 sub BUILD {
     my ($self, $params) = @_;
     $self->apply_personality($self->source, 'Source');
-    $self->stash; # trigger build
-    $self->meta->make_immutable;
+    $self->stash; # trigger loading of the config file
 }
 
 no Moose;
+__PACKAGE__->meta->make_immutable;
 1;
 __END__
 
