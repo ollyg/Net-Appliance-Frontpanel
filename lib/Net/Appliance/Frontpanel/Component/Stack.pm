@@ -2,7 +2,7 @@ package Net::Appliance::Frontpanel::Component::Stack;
 use Moose;
 
 extends 'Net::Appliance::Frontpanel::Component';
-use Net::Appliance::Frontpanel::Component::Chassis;
+use Net::Appliance::Frontpanel::Component::Module;
 
 has ip => (
     is => 'ro',
@@ -27,20 +27,20 @@ sub _build_spec {
 sub BUILD {
     my ($self, $params) = @_;
 
-    # process each of the chassis modules making up this device
+    # process each of the chassis making up this stack
     foreach my $device ($self->spec) {
         my $current_height = ($self->image->getheight || 0);
 
-        my $module = Net::Appliance::Frontpanel::Component::Chassis->new({
+        my $chassis = Net::Appliance::Frontpanel::Component::Module->new({
             config => $self->config, spec => $device });
         
         # shift imagemap down, and copy
-        $module->transpose_map(y => $current_height);
-        $self->imagemap( $self->imagemap . $module->imagemap );
+        $chassis->transpose_map(y => $current_height);
+        $self->imagemap( $self->imagemap . $chassis->imagemap );
 
-        # paste module
+        # paste chassis
         $self->paste_into_self(
-            child => $module->image,
+            child => $chassis->image,
             y     => $current_height,
         );
     }

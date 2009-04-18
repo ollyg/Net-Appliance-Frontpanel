@@ -2,6 +2,7 @@ package Net::Appliance::Frontpanel::Component::Module;
 use Moose;
 
 extends 'Net::Appliance::Frontpanel::Component';
+use Net::Appliance::Frontpanel::Component::Port;
 
 has spec => (
     is => 'ro',
@@ -15,23 +16,47 @@ sub BUILD {
     $self->image->read(file => "/home/oliver/images/". $self->spec->{image});
     # FIXME
 
-    foreach my $device (@{$self->spec->modules}) {
+    foreach my $item (@{$self->spec->{modules}}) {
         my $module = Net::Appliance::Frontpanel::Component::Module->new({
-            config => $self->config, spec => $device });
+            config => $self->config, spec => $item });
 
-        # transpose imagemap and copy
-        $module->transpose_map(x => $device->{x}, y => $device->{y});
-        $self->imagemap( $self->imagemap . $module->imagemap );
-
-        # rotate, transpose, paste image into self
-        if (my $rotate = $module->{rotate} % 360) {
-            $module->image( $module->image->rotate(right => $rotate);
+        # rotate imagemap and image
+        if (my $rotate = $item->{rotate} % 360) {
+            $module->rotate_map_by($rotate);
+            $module->image( $module->image->rotate(right => $rotate) );
         }
 
+        # transpose and append imagemap
+        $module->transpose_map(x => $item->{x}, y => $item->{y});
+        $self->imagemap( $self->imagemap . $module->imagemap );
+
+        # transpose and copy image
         $self->paste_into_self(
             child => $module->image,
-            x     => $device->{x},
-            y     => $device->{y},
+            x     => $item->{x},
+            y     => $item->{y},
+        );
+    }
+
+    foreach my $item (@{$self->spec->{ports}}) {
+        my $port = Net::Appliance::Frontpanel::Component::Port->new({
+            config => $self->config, spec => $item });
+
+        # rotate imagemap and image
+        if (my $rotate = $item->{rotate} % 360) {
+            $port->rotate_map_by($rotate);
+            $port->image( $port->image->rotate(right => $rotate) );
+        }
+
+        # transpose and append imagemap
+        $port->transpose_map(x => $item->{x}, y => $item->{y});
+        $self->imagemap( $self->imagemap . $port->imagemap );
+
+        # transpose and copy image
+        $self->paste_into_self(
+            child => $port->image,
+            x     => $item->{x},
+            y     => $item->{y},
         );
     }
 }

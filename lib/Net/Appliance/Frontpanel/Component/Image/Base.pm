@@ -2,7 +2,7 @@ package Net::Appliance::Frontpanel::Component::Image::Base;
 use Moose::Role;
 
 has image => (
-    is => 'ro',
+    is => 'rw',
     isa => 'Object',
     lazy_build => 1,
 );

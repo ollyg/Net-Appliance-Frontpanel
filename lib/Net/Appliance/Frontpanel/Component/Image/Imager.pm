@@ -7,7 +7,7 @@ use Imager;
 
 sub _build_image {
     my $self = shift;
-    return Imager->new(xsize => 1, ysize => 1, channels => 4);
+    return Imager->new;
 }
 
 sub paste_into {
