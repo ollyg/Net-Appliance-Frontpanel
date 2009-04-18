@@ -36,6 +36,26 @@ has ip => (
     required => 1,
 );
 
+sub transpose_and_paste {
+    my $self = shift;
+    my $params = {@_};
+
+    my $text = $self->transpose_map(
+        text => $params->{child}->{imagemap},
+        x    => $params->{x},
+        y    => $params->{y},
+    );
+    $self->imagemap( $self->imagemap .= $text );
+
+    $self->paste_into_self(
+        child  => $params->{child}->{image},
+        x      => $params->{x},
+        y      => $params->{y},
+    );
+
+    return $self;
+}
+
 sub BUILD {
     my ($self, $params) = @_;
 
@@ -48,7 +68,7 @@ sub BUILD {
 
     foreach my $device ($self->spec) {
         my $module = $self->make_module($device);
-        $self->transpose_and_copy(
+        $self->transpose_and_paste(
             child => $module,
             y     => ($self->image->getheight || 0),
         );
