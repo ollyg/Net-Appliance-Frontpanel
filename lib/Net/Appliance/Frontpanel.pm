@@ -4,7 +4,7 @@ use Moose;
 use Net::Appliance::Frontpanel::Config;
 
 has 'params' => (
-    is => 'ro',
+    is => 'rw',
     isa => 'HashRef[Any]',
 );
 

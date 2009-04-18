@@ -1,7 +1,7 @@
 package Net::Appliance::Frontpanel::Image::PNG;
 use Moose::Role;
 
-extends 'Net::Appliance::Frontpanel::Image';
+with 'Net::Appliance::Frontpanel::Image';
 use Imager;
 
 sub _build_image {

@@ -3,7 +3,7 @@ use Moose;
 
 with 'Net::Appliance::Frontpanel::Personality';
 with 'Net::Appliance::Frontpanel::ConfigFile';
-with 'Net::Appliance::Frontpanel::Cache';
+# with 'Net::Appliance::Frontpanel::Cache';
 
 sub BUILD {
     my ($self, $params) = @_;

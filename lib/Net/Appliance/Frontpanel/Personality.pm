@@ -1,14 +1,14 @@
 package Net::Appliance::Frontpanel::Personality;
 use Moose::Role;
 
-extends 'MooseX::Object::Pluggable';
+with 'MooseX::Object::Pluggable';
 
 sub apply_personality {
     my ($self, $pkg, $ns)  = @_;
 
     my $ns_backup = $self->_plugin_ns;
     $self->_plugin_ns($ns) if $ns;
-    $self->apply_plugin($pkg);
+    $self->load_plugin($pkg);
     $self->_plugin_ns($ns_backup) if $ns;
 
     return $self;
