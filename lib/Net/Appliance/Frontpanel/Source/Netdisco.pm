@@ -6,10 +6,10 @@ with 'Net::Appliance::Frontpanel::Helper::DBI';
 sub _build_dbi_connect_args {
     my $self = shift;
     return [
-        $self->config->{db_Pg},
-        $self->config->{db_Pg_user},
-        $self->config->{db_Pg_pw},
-        (eval '{'.$self->config->{db_Pg_opts}.'}') || {},
+        $self->stash->{db_Pg},
+        $self->stash->{db_Pg_user},
+        $self->stash->{db_Pg_pw},
+        (eval '{'.$self->stash->{db_Pg_opts}.'}') || {},
     ];
 }
 

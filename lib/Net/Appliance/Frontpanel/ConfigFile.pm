@@ -1,27 +1,34 @@
-package Net::Appliance::Frontpanel::ConfigStash;
+package Net::Appliance::Frontpanel::ConfigFile;
 use Moose::Role;
 
 use Config::Any;
 use Carp qw(croak);
 
-has 'config' => (
+has 'configfile' => (
+    is => 'ro',
+    isa => 'Str',
+    required => 1,
+);
+
+has 'stash' => (
     is => 'ro',
     isa => 'HashRef[Any]',
     lazy_build => 1,
 );
 
-sub _build_config {
+sub _build_stash {
     my $self = shift;
-    my $config = eval{ Config::Any->load_files({
+    my $stash = eval{ Config::Any->load_files({
         files => [$self->configfile],
         use_ext => 0,
         flatten_to_hash => 1,
     })->{$self->configfile} };
     croak "failed to load config [".$self->configfile."]\n" if $@;
-    return $config;
+    return $stash;
 }
 
 no Moose::Role;
 1;
 __END__
+
 

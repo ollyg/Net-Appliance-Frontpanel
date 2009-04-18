@@ -6,35 +6,30 @@ with qw(
     Net::Appliance::Frontpanel::ImageMap
 );
 
-has source => (
+has ip => (
     is => 'ro',
-    isa => 'Net::Appliance::Frontpanel::Source',
+    isa => 'Str',
     required => 1,
 );
 
-has cache => (
+has 'config' => (
     is => 'ro',
-    isa => 'Net::Appliance::Frontpanel::Cache',
+    isa => 'Net::Appliance::Frontpanel::Config',
     required => 1,
+    weak_ref => 1,
 );
 
 has spec => (
     is => 'ro',
-    isa => 'ArrayRef[Any]',
+    isa => 'ArrayRef[HashRef]',
     auto_deref => 1,
     lazy_build => 1,
 );
 
 sub _build_spec {
     my $self = shift;
-    return $self->cache->load_spec($self->ip);
+    return $self->config->load_spec($self->ip);
 }
-
-has ip => (
-    is => 'ro',
-    isa => 'Str',
-    required => 1,
-);
 
 sub transpose_and_paste {
     my $self = shift;

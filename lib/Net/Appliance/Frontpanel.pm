@@ -1,17 +1,28 @@
 package Net::Appliance::Frontpanel;
 use Moose;
 
-with qw(
-    Net::Appliance::Frontpanel::Config
-    Net::Appliance::Frontpanel::Personality
+use Net::Appliance::Frontpanel::Config;
+
+has 'params' => (
+    is => 'ro',
+    isa => 'HashRef[Any]',
 );
+
+has 'config' => (
+    is => 'ro',
+    isa => 'Net::Appliance::Frontpanel::Config',
+    lazy_build => 1,
+);
+
+sub _build_config {
+    return Net::Appliance::Frontpanel::Config->new(
+        (shift)->params,
+    );
+}
 
 sub BUILD {
     my ($self, $params) = @_;
-
-    # load up the data source personality
-    $params->{source} ||= 'Netdisco';
-    $self->apply_personality('Source', $params->{source});
+    $self->params($params);
 }
 
 no Moose;
