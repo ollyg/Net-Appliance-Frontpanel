@@ -7,7 +7,7 @@ use Carp qw(croak);
 has 'configfile' => (
     is => 'ro',
     isa => 'Str',
-    required => 1,
+    predicate => 'has_configfile',
 );
 
 has 'stash' => (
@@ -18,12 +18,17 @@ has 'stash' => (
 
 sub _build_stash {
     my $self = shift;
+    $self->has_configfile
+        or croak "configfile is a required parameter";
+
     my $stash = eval{ Config::Any->load_files({
         files => [$self->configfile],
         use_ext => 0,
         flatten_to_hash => 1,
     })->{$self->configfile} };
-    croak "failed to load config [".$self->configfile."]\n" if $@;
+    croak "failed to load config [".$self->configfile."]\n"
+        if !defined $stash or $@;
+
     return $stash;
 }
 

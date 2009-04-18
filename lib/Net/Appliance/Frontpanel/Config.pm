@@ -5,16 +5,20 @@ with 'Net::Appliance::Frontpanel::Personality';
 with 'Net::Appliance::Frontpanel::Config::File';
 # with 'Net::Appliance::Frontpanel::Cache';
 
+has 'source' => (
+    is => 'ro',
+    isa => 'Str',
+    default => 'Netdisco',
+);
+
 sub BUILD {
     my ($self, $params) = @_;
-
-    # load up the data source personality
-    $params->{source} ||= 'Netdisco';
-    $self->apply_personality($params->{source}, 'Source');
+    $self->apply_personality($self->source, 'Source');
+    $self->stash; # trigger build
+    $self->meta->make_immutable;
 }
 
 no Moose;
-__PACKAGE__->meta->make_immutable;
 1;
 __END__
 

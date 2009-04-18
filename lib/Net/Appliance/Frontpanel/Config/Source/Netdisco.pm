@@ -3,6 +3,8 @@ use Moose::Role;
 
 with 'Net::Appliance::Frontpanel::Helper::DBI';
 
++has 'configfile' => (default => '/etc/netdisco/netdisco.conf');
+
 sub _build_dbi_connect_args {
     my $self = shift;
     return [
