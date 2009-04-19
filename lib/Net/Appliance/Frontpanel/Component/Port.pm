@@ -12,7 +12,8 @@ has spec => (
 
 sub make_imagemap_text {
     my $self = shift;
-    my $port = $self->config->device_port->{$self->ip, $self->spec->{name}};
+    my $port = $self->spec->{ports_data}->{$self->spec->{name}}
+        or return ''; # no info to display
 
     # now also set image map text
     my $html_port = encode_entities($self->spec->{name});
@@ -20,15 +21,8 @@ sub make_imagemap_text {
     my $height = $self->image->getheight || 0;
     my $odd = 0; # row striping
 
-    # get trunking status of port - no easier way sadly
-    $port->{vlan} = 'Trunking' if $self->config->port_is_trunking;
-    $port->{remote_name} = $self->config->device_name($port->{remote_ip});
-
-    # make all port data html safe
-    $port = { map {($_ => encode_entities($port->{$_}))} keys %$port };
-
     # FIXME Netdisco specific URL
-    my $text .= '<area href="device.html?ip='. encode_entities($self->ip) .'&amp;port='. $html_port
+    my $text .= '<area href="device.html?ip='. $self->spec->{ip} .'&amp;port='. $html_port
         .'" shape="rect" coords="0,0,'. $width .','. $height .'" alt="'. $html_port .'"';
 
     if (defined($self->config->stash->{fp_overlib}) and $self->config->stash->{fp_overlib} eq 'true') {

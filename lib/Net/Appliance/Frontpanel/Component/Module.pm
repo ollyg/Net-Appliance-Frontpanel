@@ -17,7 +17,9 @@ sub BUILD {
 
     foreach my $item (@{$self->spec->{modules}}) {
         my $module = Net::Appliance::Frontpanel::Component::Module->new({
-            config => $self->config, spec => $item });
+            config => $self->config,
+            spec => { %$item, ports_data => $self->spec->{ports_data}, ip => $self->spec->{ip} },
+        });
 
         # rotate imagemap and image
         if (my $rotate = $item->{rotate} % 360) {
@@ -39,7 +41,9 @@ sub BUILD {
 
     foreach my $item (@{$self->spec->{ports}}) {
         my $port = Net::Appliance::Frontpanel::Component::Port->new({
-            config => $self->config, spec => $item });
+            config => $self->config,
+            spec => { %$item, ports_data => $self->spec->{ports_data}, ip => $self->spec->{ip} },
+        });
 
         # rotate imagemap and image
         if (my $rotate = $item->{rotate} % 360) {
