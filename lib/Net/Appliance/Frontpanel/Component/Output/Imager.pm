@@ -1,13 +1,23 @@
-package Net::Appliance::Frontpanel::Component::Image::Imager;
+package Net::Appliance::Frontpanel::Component::Output::Imager;
 use Moose::Role;
 
-with 'Net::Appliance::Frontpanel::Component::Image::Base';
 use List::Util qw(max);
 use Imager;
+
+has image => (
+    is => 'rw',
+    isa => 'Object',
+    lazy_build => 1,
+);
 
 sub _build_image {
     my $self = shift;
     return Imager->new;
+}
+
+sub paste_into_self {
+    my $self = shift;
+    return $self->paste_into(@_, parent => $self->image);
 }
 
 sub paste_into {
@@ -35,21 +45,3 @@ sub paste_into {
 no Moose::Role;
 1;
 __END__
-package Net::Appliance::Frontpanel::Component::Image::Base;
-use Moose::Role;
-
-has image => (
-    is => 'rw',
-    isa => 'Object',
-    lazy_build => 1,
-);
-
-sub paste_into_self {
-    my $self = shift;
-    return $self->paste_into(@_, parent => $self->image);
-}
-
-no Moose::Role;
-1;
-__END__
-

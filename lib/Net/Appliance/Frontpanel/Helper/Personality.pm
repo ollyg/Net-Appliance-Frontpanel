@@ -1,4 +1,4 @@
-package Net::Appliance::Frontpanel::Personality;
+package Net::Appliance::Frontpanel::Helper::Personality;
 use Moose::Role;
 
 with 'MooseX::Object::Pluggable';

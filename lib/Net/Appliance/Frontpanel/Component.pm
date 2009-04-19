@@ -1,8 +1,8 @@
 package Net::Appliance::Frontpanel::Component;
 use Moose;
 
-with 'Net::Appliance::Frontpanel::Personality';
-with 'Net::Appliance::Frontpanel::Component::ImageMap';
+with 'Net::Appliance::Frontpanel::Helper::Personality';
+with 'Net::Appliance::Frontpanel::Component::Output::ImageMap';
 
 has 'config' => (
     is => 'ro',
@@ -22,7 +22,7 @@ sub BUILD {
     my ($self, $params) = @_;
 
     # load up the image type personality
-    $self->apply_personality($self->image_type, 'Image');
+    $self->apply_personality($self->image_type, 'Output');
 }
 
 no Moose;

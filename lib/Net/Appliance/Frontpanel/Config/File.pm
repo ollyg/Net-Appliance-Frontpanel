@@ -1,4 +1,4 @@
-package Net::Appliance::Frontpanel::Config::External;
+package Net::Appliance::Frontpanel::Config::File;
 use Moose::Role;
 
 use Config::Any;

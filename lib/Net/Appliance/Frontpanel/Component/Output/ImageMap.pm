@@ -1,4 +1,4 @@
-package Net::Appliance::Frontpanel::Component::ImageMap;
+package Net::Appliance::Frontpanel::Component::Output::ImageMap;
 use Moose::Role;
 
 has imagemap => (
