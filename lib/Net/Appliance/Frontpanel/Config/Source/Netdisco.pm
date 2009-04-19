@@ -5,23 +5,6 @@ with 'Net::Appliance::Frontpanel::Helper::DBI';
 
 +has 'configfile' => (default => '/etc/netdisco/netdisco.conf');
 
-has 'device_ports' => (
-    is => 'ro',
-    isa => 'HashRef[HashRef]',
-    lazy_build => 1,
-)
-
-# return ports spec for a device
-sub _build_device_ports {
-    my $ports = (shift)->dbh->selectall_arrayref(
-        'SELECT * FROM device_port WHERE ip = ?',
-        { Slice => {} },
-        shift
-    );
-
-    return { map {$_->{port} => $_} @$ports };
-}
-
 sub _build_dbi_connect_args {
     my $self = shift;
     return [
@@ -48,18 +31,42 @@ sub device_modules {
 
 sub port_is_trunking {
     my ($self, $ip, $port) = @_;
-    my $rv = $self->dbh->selectrow_arrayref(
+    my $rv = $self->dbh->selectall_arrayref(
         'SELECT count(*) AS count FROM device_port_vlan WHERE ip = ? AND port = ? and native = false',
         { Slice => {} },
         $ip, $port,
     );
-    return $rv->{count};
+    return $rv->[0]->{count};
 }
 
-sub get_remote_port {
-    my ($self, $ip, $port) = @_;
-    my $ = $self->dbh->selectrow_arrayref(
-        'SELECT 
+sub device_name {
+    my ($self, $ip) = @_;
+
+    my $device_ip = $self->dbh->selectall_arrayref(
+        'SELECT ip FROM device_ip WHERE alias = ?',
+        { Slice => {} },
+        $ip,
+    )->[0]->{ip};
+
+    my $device_name = $self->dbh->selectall_arrayref(
+        'SELECT dns FROM device WHERE ip = ?',
+        { Slice => {} },
+        $device_ip,
+    )->[0]->{dns} || $device_ip;
+
+    return $device_name;
+}
+
+# return ports spec for a device
+sub device_ports {
+    my ($self, $ip) = @_;
+    my $ports = $self->dbh->selectall_arrayref(
+        'SELECT * FROM device_port WHERE ip = ?',
+        { Slice => {} },
+        $ip
+    );
+    return { map {$_->{port} => $_} @$ports };
+}
 
 no Moose::Role;
 1;
