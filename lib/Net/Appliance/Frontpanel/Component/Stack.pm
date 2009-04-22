@@ -24,7 +24,6 @@ sub _build_ports_data {
     foreach my $name (keys %$ports) {
         my $p = $ports->{$name};
 
-        $p->{ip} = $self->ip; # XXX hack
         $p->{vlan} = 'Trunking'
             if $self->config->port_is_trunking($self->ip, $name);
         $p->{remote_name} = $self->config->device_name($p->{remote_ip});
