@@ -13,15 +13,13 @@ has spec => (
 sub port_link_start {
     my $self = shift;
     return sprintf q{
-        <area href="device.html?ip=%s&port=%s" shape="rect" coords="0,0,%s,%s" alt="%s"
-    }, @_;
+        <area href="device.html?ip=%s&port=%s" shape="rect" coords="0,0,%s,%s" alt="%s" }, @_;
 }
 
 sub port_link_end {
     my $self = shift;
     return sprintf q{
-        />
-    }, @_;
+        /> }, @_;
 }
 
 sub port_overlib_start {
@@ -33,8 +31,7 @@ sub port_overlib_start {
                     <tr class=match-%s><td align=right>Descr:<td align=left>&nbsp;%s</td></tr>
                     <tr class=match-%s><td align=right>VLAN:<td align=left>&nbsp;%s</td></tr>
                     <tr class=match-%s><td align=right>Speed:<td align=left>&nbsp;%s</td></tr>
-                    <tr class=match-%s><td align=right>Duplex:<td align=left>&nbsp;%s/%s</td></tr>
-    }, @_;
+                    <tr class=match-%s><td align=right>Duplex:<td align=left>&nbsp;%s/%s</td></tr> }, @_;
 }
 
 sub port_overlib_end {
@@ -47,22 +44,19 @@ sub port_overlib_end {
             CAPCOLOR, '#f5deb3',
             BGCOLOR, '#191970',
         );"
-        onmouseout="return nd();"
-    }, @_;
+        onmouseout="return nd();" }, @_;
 }
 
 sub port_remote_name {
     my $self = shift;
     return sprintf q{
-                    <tr class=match-%s><td align=right>Neighbour:<td align=left>&nbsp;%s</td></tr>
-    }, @_;
+                    <tr class=match-%s><td align=right>Neighbour:<td align=left>&nbsp;%s</td></tr> }, @_;
 }
 
 sub port_remote_port {
     my $self = shift;
     return sprintf q{
-                    <tr class=match-%s><td align=right>Nbr Port:<td align=left>&nbsp;%s</td></tr>
-    }, @_;
+                    <tr class=match-%s><td align=right>Nbr Port:<td align=left>&nbsp;%s</td></tr> }, @_;
 }
 
 sub make_imagemap_text {
