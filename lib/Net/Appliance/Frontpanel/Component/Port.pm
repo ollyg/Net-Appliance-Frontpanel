@@ -101,10 +101,10 @@ sub BUILD {
     my ($self, $params) = @_;
 
     my $status = ($self->spec->{dummy} ? 'empty' : 'up'); # FIXME
-    my $file = $self->config->port_db->{ $self->spec->{type} }->{ $status };
-    return unless $file;
+    $self->spec->{image} =
+        $self->config->port_db->{ $self->spec->{type} }->{ $status };
 
-    $self->image->read(file => $self->config->image_loc($file));
+    $self->load_or_make_image;
     $self->make_imagemap_text;
 }
 

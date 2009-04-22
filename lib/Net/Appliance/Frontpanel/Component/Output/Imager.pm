@@ -15,6 +15,39 @@ sub _build_image {
     return Imager->new;
 }
 
+sub load_or_make_image {
+    my $self = shift;
+    my $file = $self->spec->{image};
+    my $disk_file = $self->config->image_loc($file);
+
+    if (-e $disk_file && -r _ && -f _) {
+        $self->image->read( file => $disk_file );
+    }
+    else {
+        # load cache if we can
+        my $cache = $self->config->image_db->{$file};
+
+        # no image and no cache for this device, we have to bail out
+        if (!defined $cache) {
+            $self->image->img_set(
+                xsize => 1, ysize => 1, channels => 4 );
+            return;
+        }
+
+        # set size
+        $self->image->img_set(
+            xsize => $cache->{w},
+            ysize => $cache->{h},
+            channels => 4,
+        );
+        # fill
+        $self->image->flood_fill(
+            x => 1, y => 1,
+            %{$cache->{options}},
+        );
+    }
+}
+
 sub paste_into_self {
     my $self = shift;
     return $self->paste_into(@_, parent => $self->image);

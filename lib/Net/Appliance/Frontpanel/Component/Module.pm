@@ -47,7 +47,7 @@ sub process_children {
 sub BUILD {
     my ($self, $params) = @_;
 
-    $self->image->read(file => $self->config->image_loc($self->spec->{image}));
+    $self->load_or_make_image;
     $self->process_children('modules');
     $self->process_children('ports');
 }

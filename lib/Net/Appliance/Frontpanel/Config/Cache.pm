@@ -1,6 +1,16 @@
 package Net::Appliance::Frontpanel::Config::Cache;
 use Moose::Role;
 
+has 'image_db' => (
+    is => 'ro',
+    isa => 'HashRef[HashRef]',
+    lazy_build => 1,
+);
+
+sub _build_image_db {
+    (shift)->load_cache('image_db.pl');
+}
+
 has 'port_db' => (
     is => 'ro',
     isa => 'HashRef[HashRef]',
