@@ -11,18 +11,18 @@ has 'config' => (
     weak_ref => 1,
 );
 
-has 'image_type' => (
+has 'imager' => (
     is => 'ro',
     isa => 'Str',
     lazy => 1,
-    default => sub{ (shift)->config->stash->{fp_image_type} || 'Imager' },
+    default => sub{ (shift)->config->stash->{fp_imager} || 'Imager' },
 );
 
 sub BUILD {
     my ($self, $params) = @_;
 
     # load up the image type personality
-    $self->apply_personality($self->image_type, 'Output');
+    $self->apply_personality($self->imager, 'Output');
 }
 
 no Moose;
