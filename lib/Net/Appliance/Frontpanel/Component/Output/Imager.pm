@@ -27,24 +27,20 @@ sub load_or_make_image {
         # load cache if we can
         my $cache = $self->config->image_db->{$file};
 
-        # no image and no cache for this device, we have to bail out
-        if (!defined $cache) {
-            $self->image->img_set(
-                xsize => 1, ysize => 1, channels => 4 );
-            return;
-        }
-
-        # set size
+        # set size (fail safe to 1x1 if there's no cache for this img)
         $self->image->img_set(
-            xsize => $cache->{w},
-            ysize => $cache->{h},
+            xsize => $cache->{w} || 1,
+            ysize => $cache->{h} || 1,
             channels => 4,
         );
+
         # fill
+        $self->image->box(color => $cache->{border})
+            if exists $cache->{border};
         $self->image->flood_fill(
-            x => 1, y => 1,
-            %{$cache->{options}},
-        );
+            x => 5, y => 5,
+            %{$cache->{flood}},
+        ) if exists $cache->{flood};
     }
 }
 
