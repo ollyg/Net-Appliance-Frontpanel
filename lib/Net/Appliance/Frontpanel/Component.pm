@@ -2,6 +2,7 @@ package Net::Appliance::Frontpanel::Component;
 use Moose;
 
 with 'Net::Appliance::Frontpanel::Helper::Personality';
+with 'Net::Appliance::Frontpanel::Helper::Logger';
 with 'Net::Appliance::Frontpanel::Component::Output::ImageMap';
 
 has 'config' => (
