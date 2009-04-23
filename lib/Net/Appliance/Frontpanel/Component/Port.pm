@@ -102,6 +102,8 @@ sub BUILD {
 
     my $status = ($self->spec->{dummy} ? 'empty' :
         $self->spec->{ports_data}->{$self->spec->{name}}->{up});
+    return if !defined $status;
+
     $self->spec->{image} =
         $self->config->port_db->{ $self->spec->{type} }->{ $status };
 
