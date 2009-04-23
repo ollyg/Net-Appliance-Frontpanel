@@ -11,9 +11,10 @@ has spec => (
 );
 
 sub port_link_start {
-    my $self = shift;
-    return sprintf q{
-        <area href="device.html?ip=%s&port=%s" shape="rect" coords="0,0,%s,%s" alt="%s" }, @_;
+    my ($self, $ip, $port) = (shift, shift, shift);
+    my $target = $self->config->make_port_link($ip, $port);
+    return sprintf qq{
+        <area href="%s" shape="rect" coords="0,0,%s,%s" alt="%s" }, $target, @_;
 }
 
 sub port_link_end {
@@ -69,9 +70,8 @@ sub make_imagemap_text {
     my $height = $self->image->getheight || 0;
     my $odd = 0; # row striping
 
-    # FIXME Netdisco specific URL
     my $text = $self->port_link_start(
-        $self->spec->{ip}, $html_port, $width, $height, $html_port);
+        $self->spec->{ip}, $self->spec->{name}, $width, $height, $html_port);
 
     if (defined($self->config->stash->{fp_overlib})
         and $self->config->stash->{fp_overlib} eq 'true') {

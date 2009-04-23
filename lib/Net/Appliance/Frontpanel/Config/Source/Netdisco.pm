@@ -2,6 +2,7 @@ package Net::Appliance::Frontpanel::Config::Source::Netdisco;
 use Moose::Role;
 
 with 'Net::Appliance::Frontpanel::Helper::DBI';
+use URI::Escape qw(uri_escape);
 
 +has 'configfile' => (default => '/etc/netdisco/netdisco.conf');
 
@@ -13,6 +14,11 @@ sub _build_dbi_connect_args {
         $self->stash->{db_Pg_pw},
         (eval '{'.$self->stash->{db_Pg_opts}.'}') || {},
     ];
+}
+
+sub make_port_link {
+    my ($self, $ip, $port) = @_;
+    return 'device.html?ip='. uri_escape($ip) .'&port='. uri_escape($port);
 }
 
 # return list of devices
