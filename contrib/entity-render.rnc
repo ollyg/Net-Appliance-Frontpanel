@@ -1,0 +1,77 @@
+namespace rng = "http://relaxng.org/ns/structure/1.0"
+namespace dc  = "http://purl.org/dc/terms/"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+datatypes dtd = "http://relaxng.org/ns/compatibility/datatypes/1.0"
+grammar {
+
+dc:title [ "RELAX NG Compact Schema for describing the Screen Rendering of ENTITY-MIB representations of Devices" ]
+dc:creator [ "Oliver Gorwits" ]
+dc:subject [ "Netdisco, ENTITY-MIB, RELAX NG" ]
+dc:description [ "This schema will validate layout descriptions."]
+dc:date [ "2008-03-14" ]
+dc:language [ "en" ]
+dc:rights [
+  "Copyright University of Oxford, 2008. \x{a}" ~
+  "Released under the Free Software Foundation GFDL."
+]
+
+# this is required in top-level element to allow XInclude to work
+include-base = attribute xml:base { text } ?
+
+# root is ports or modules or chassis
+start = classes-content
+
+classes-content =
+    element classes {
+        include-base,
+        (classes-content? ,
+         (element port-image { image-body  }+ |
+          element module     { module-body }+ |
+          element chassis    { module-body }+))
+    }
+
+image-body =
+    attribute type { dtd:ID },
+    (element empty { xsd:anyURI } |
+     (element up    { xsd:anyURI },
+      element down  { xsd:anyURI }?))
+
+module-body =
+    attribute type  { xsd:NCName },
+    attribute image { xsd:anyURI }?,
+    (element container { container-body, empty }* &
+     element port      { port-body, empty }* &
+     element containerGroup { containergroup-body, empty }* &
+     element portGroup      { portgroup-body, empty }*)
+
+loc-body =
+    attribute rotate { "90" | "180" | "270" }?,
+    attribute x { xsd:nonNegativeInteger },
+    attribute y { xsd:nonNegativeInteger }
+
+container-body =
+    attribute type { xsd:NCName },
+    loc-body
+
+port-body =
+    # must reference a global <port> type
+    attribute type { dtd:IDREF },
+    loc-body
+
+group-body =
+    attribute width { xsd:positiveInteger },
+    attribute height { xsd:positiveInteger },
+    attribute xStep { xsd:nonNegativeInteger },
+    attribute yStep { xsd:nonNegativeInteger },
+    attribute countDirection { "across" | "down" }
+
+containergroup-body =
+    container-body,
+    group-body
+
+portgroup-body =
+    attribute autoInvert { xsd:boolean }?,
+    port-body,
+    group-body
+
+} # grammar

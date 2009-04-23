@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<?oxygen RNGSchema="entity-render.rnc" type="compact"?>
+<?xml-stylesheet type="text/xsl" href="port-image2perl.xsl"?>
+<classes>
+    
+    <!-- ======================================== -->
+    <!--               Overrides                  -->
+
+    <!-- use these when the software reports incorrect entities.
+         as per entity.xsl, there are four options, by preference:
+       1) root/container/type
+       2) container/type
+       3) root/type
+       4) type
+         (where root is 'chassis' or 'module') -->
+    
+    <!-- 1Gig fibre port in an SFP slot in a WS-C3750G-12S -->
+    <port-image type="cevChassisCat3750Ge12Sfp_cevPortBaseTEther">
+        <up>sfp_green.gif</up>
+        <down>sfp_gray.gif</down>
+    </port-image>
+    
+    <!-- Empty GBIC slot in 6500 chassis 8xGBIC line card -->
+    <port-image type="cevCat6kWsx6408aGbic_cevContainerGbic">
+        <empty>GBIC-empty.gif</empty>
+    </port-image>
+
+    <!-- 1Gig fibre GBIC module in 6500 chassis 8xGBIC line card -->
+    <port-image type="cevCat6kWsx6408aGbic_cevPortGigBaseSX">
+        <up>GBIC-green.gif</up>
+        <down>POSGBIC-empty.gif</down>
+    </port-image>
+    
+    <!-- 1Gig fibre SFP module in early software releases-->
+    <port-image type="cevContainerGbic_cevPortUnknown">
+        <up>sfp_green.gif</up>
+        <down>sfp_gray.gif</down>
+    </port-image>
+    
+    <!-- ======================================== -->
+    <!--            Empty containers              -->
+
+    <!-- GBIC slot with no module installed -->
+    <!-- AARRGGH! most cisco devices report SFP as GBIC :-( -->
+    <port-image type="cevContainerGbic">
+        <empty>sfp_empty_gray.gif</empty>
+    </port-image>
+    
+    <!-- SFP slot with no module installed -->
+    <port-image type="cevContainerSFP">
+        <empty>sfp_empty_gray.gif</empty>
+    </port-image>
+    
+    <!-- X2 slot with no module installed -->
+    <!-- personally I think this looks naff; uncomment if you want it in
+        <port-image type="cevContainer10GigBasePort">
+        <empty>10gb_sfp_empty_gray.gif</empty>
+        </port-image>
+    -->
+    
+    <!-- ======================================== -->
+    <!--       XENPAK Modules, 10GBit fibre       -->
+    
+    <!-- 10Gig XENPAK -->
+    <port-image type="cevPort10GigBaseLR">
+        <up>10GBIC-Green.gif</up>
+        <down>10GBIC-empty.gif</down>
+    </port-image>
+    
+    <!-- ======================================== -->
+    <!--  SFP Modules, 1Gbit, fibre then copper   -->
+    
+    <!-- 1Gig fibre SFP module -->
+    <port-image type="cevPortGigBaseSX">
+        <up>sfp_green.gif</up>
+        <down>sfp_gray.gif</down>
+    </port-image>
+    
+    <!-- 1Gig fibre SFP module -->
+    <port-image type="cevPortGigBaseLX">
+        <up>sfp_green.gif</up>
+        <down>sfp_gray.gif</down>
+    </port-image>
+    
+    <!-- 1Gig fibre SFP module -->
+    <port-image type="cevPortGigBaseLH">
+        <up>sfp_green.gif</up>
+        <down>sfp_gray.gif</down>
+    </port-image>
+    
+    <!-- 1Gig copper SFP module -->
+    <port-image type="cevPortGigBaseCX">
+        <up>sfp_tx_green.gif</up>
+        <down>sfp_tx_gray.gif</down>
+    </port-image>
+    
+    <!-- 1Gig RJ45 port in an SFP slot -->
+    <port-image type="cevPortGigBaseBT">
+        <up>sfp_tx_green.gif</up>
+        <down>sfp_tx_gray.gif</down>
+    </port-image>
+    
+    <!-- RJ45 SFP module -->
+    <port-image type="cevPortGigBaseT">
+        <up>sfp_tx_green.gif</up>
+        <down>sfp_tx_gray.gif</down>
+    </port-image>
+    
+    <!-- ======================================== -->
+    <!-- SFP Modules, 100Mbit, fibre then copper  -->
+    
+    <!-- 100Meg multimode fibre port in an SFP slot -->
+    <port-image type="cevContainerSFP_cevPort100BaseFX">
+        <up>sfp_green.gif</up>
+        <down>sfp_gray.gif</down>
+    </port-image>
+    
+    <!-- ======================================== -->
+    <!--     Native 1 Gbit, fibre then copper     -->
+
+    <!-- 10/100/1000 RJ45 port -->
+    <port-image type="cevPortBaseTEther">
+        <up>green.gif</up>
+        <down>gray.gif</down>
+    </port-image>
+
+    <!-- ======================================== -->
+    <!--    Native 100 Mbit, fibre then copper    -->
+
+    <!-- 100Meg multimode fibre port -->
+    <port-image type="cevPortFe">
+        <up>e100BaseF-green.gif</up>
+        <down>e100BaseF-white.gif</down>
+    </port-image>
+
+    <!-- 100Meg multimode fibre port -->
+    <port-image type="cevPort.123">
+        <up>e100BaseF-green.gif</up>
+        <down>e100BaseF-white.gif</down>
+    </port-image>
+
+    <!-- 100Meg multimode fibre port -->
+    <port-image type="cevPort100BaseFX">
+        <up>e100BaseF-green.gif</up>
+        <down>e100BaseF-white.gif</down>
+    </port-image>
+
+    <!-- 10/100 RJ45 port -->
+    <port-image type="cevPortNIC100">
+        <up>green.gif</up>
+        <down>gray.gif</down>
+    </port-image>
+
+</classes>
