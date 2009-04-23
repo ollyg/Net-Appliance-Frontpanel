@@ -100,7 +100,8 @@ sub make_imagemap_text {
 sub BUILD {
     my ($self, $params) = @_;
 
-    my $status = ($self->spec->{dummy} ? 'empty' : 'up'); # FIXME
+    my $status = ($self->spec->{dummy} ? 'empty' :
+        $self->spec->{ports_data}->{$self->spec->{name}}->{up});
     $self->spec->{image} =
         $self->config->port_db->{ $self->spec->{type} }->{ $status };
 
