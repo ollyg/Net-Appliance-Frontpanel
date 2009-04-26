@@ -51,7 +51,7 @@ sub _build_stack_spec {
 
 sub BUILD {
     my ($self, $params) = @_;
-    $self->logger->debug('building fronpanel for device ['. $self->ip .']');
+    $self->logger->debug('building frontpanel for device ['. $self->ip .']');
 
     # process each of the chassis making up this stack
     foreach my $device ($self->stack_spec) {
@@ -60,6 +60,7 @@ sub BUILD {
         my $chassis = Net::Appliance::Frontpanel::Component::Module->new({
             config => $self->config,
             spec => { %$device, ports_data => $self->ports_data, ip => $self->ip },
+            debug => $self->debug,
         });
         
         # shift imagemap down, and copy

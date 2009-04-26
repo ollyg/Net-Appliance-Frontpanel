@@ -20,6 +20,7 @@ sub process_children {
         my $child = $child_class->new({
             config => $self->config,
             spec => { %$item, ports_data => $self->spec->{ports_data}, ip => $self->spec->{ip} },
+            debug => $self->debug,
         });
 
         # rotate imagemap and image

@@ -99,9 +99,10 @@ sub make_imagemap_text {
 
 sub BUILD {
     my ($self, $params) = @_;
-    $self->logger->debug('... processing port ['. $self->spec->{name} .']');
+    $self->logger->debug('    processing port ['. $self->spec->{name} .']');
 
     if (!exists $self->spec->{ports_data}->{$self->spec->{name}}) {
+        $self->logger->debug('        skipping rendering, no data from Source');
         $self->imagemap("\n        <!-- port [". encode_entities($self->spec->{name})
             ."] not provided by Source, skipping -->");
         return;

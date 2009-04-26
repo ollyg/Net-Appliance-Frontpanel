@@ -28,7 +28,8 @@ has log_dispatch_conf => (
                 class     => 'Log::Dispatch::Screen',
                 min_level => 'debug',
                 stderr    => 1,
-                format    => '[%p] %m at %F line %L%n',
+                # format    => '[%p] %m at %F line %L%n',
+                format    => '[%p] %m%n',
             }
             : {
                 class     => 'Log::Dispatch::Syslog',
