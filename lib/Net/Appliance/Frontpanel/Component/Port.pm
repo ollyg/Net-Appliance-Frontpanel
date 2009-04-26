@@ -99,6 +99,7 @@ sub make_imagemap_text {
 
 sub BUILD {
     my ($self, $params) = @_;
+    $self->logger->debug('... processing port ['. $self->spec->{name} .']');
 
     my $status = ($self->spec->{dummy} ? 'empty' :
         $self->spec->{ports_data}->{$self->spec->{name}}->{up});

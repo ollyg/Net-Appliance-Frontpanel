@@ -21,9 +21,12 @@ sub load_or_make_image {
     my $disk_file = $self->config->image_loc($file);
 
     if (-e $disk_file && -r _ && -f _) {
+        $self->logger->debug("... loading image [$disk_file]");
         $self->image->read( file => $disk_file );
     }
     else {
+        $self->logger->debug("... faking image for [$file]");
+
         # load cache if we can
         my $cache = $self->config->image_db->{$file};
 
