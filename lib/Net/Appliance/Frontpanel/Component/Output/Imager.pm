@@ -4,7 +4,7 @@ use Moose::Role;
 use List::Util qw(max);
 use Imager;
 
-requires qw(spec config logger);
+requires qw(config logger);
 
 has image => (
     is => 'rw',
