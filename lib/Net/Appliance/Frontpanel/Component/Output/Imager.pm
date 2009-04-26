@@ -4,6 +4,8 @@ use Moose::Role;
 use List::Util qw(max);
 use Imager;
 
+requires qw(spec config logger);
+
 has image => (
     is => 'rw',
     isa => 'Object',

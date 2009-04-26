@@ -4,6 +4,8 @@ use Moose::Role;
 with 'Net::Appliance::Frontpanel::Helper::DBI';
 use URI::Escape qw(uri_escape);
 
+requires qw(stash);
+
 +has 'configfile' => (default => '/etc/netdisco/netdisco.conf');
 
 sub _build_dbi_connect_args {

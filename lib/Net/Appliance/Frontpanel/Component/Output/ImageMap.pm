@@ -1,6 +1,8 @@
 package Net::Appliance::Frontpanel::Component::Output::ImageMap;
 use Moose::Role;
 
+# requires qw(image);
+
 has imagemap => (
     is => 'rw',
     isa => 'Str',

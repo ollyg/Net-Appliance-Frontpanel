@@ -1,6 +1,8 @@
 package Net::Appliance::Frontpanel::Config::Cache;
 use Moose::Role;
 
+requires qw(stash);
+
 has 'image_db' => (
     is => 'ro',
     isa => 'HashRef[HashRef]',
