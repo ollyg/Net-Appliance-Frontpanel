@@ -27,7 +27,7 @@ sub load_or_make_image {
         $self->image->read( file => $disk_file );
     }
     else {
-        $self->logger->debug("        faking image for [$file]");
+        $self->logger->error("        cannot read [$disk_file]");
 
         # load cache if we can
         my $cache = $self->config->image_db->{$file};

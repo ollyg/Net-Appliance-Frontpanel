@@ -51,7 +51,8 @@ sub _build_stack_spec {
 
 sub BUILD {
     my ($self, $params) = @_;
-    $self->logger->debug('building frontpanel for device ['. $self->ip .']');
+    $self->pre_flight_check_ok or return;
+    $self->logger->notice('building frontpanel for device ['. $self->ip .']');
 
     # process each of the chassis making up this stack
     foreach my $device ($self->stack_spec) {
@@ -73,6 +74,36 @@ sub BUILD {
             y     => $current_height,
         );
     }
+}
+
+sub bail_out_message {
+    my ($self, $message) = @_;
+    $self->logger->error($message);
+    $self->imagemap("\n        <!-- $message -->\n");
+}
+
+sub pre_flight_check_ok {
+    my $self = shift;
+
+    if (! eval{ $self->config->port_db }) {
+        $self->bail_out_message('failed to load the port types database, '.
+            'cannot render any frontpanels');
+        return 0;
+    }
+
+    if (! eval{ $self->config->image_db }) {
+        $self->bail_out_message('failed to load the image formatting database, '.
+            'cannot render any frontpanels');
+        return 0;
+    }
+
+    if (! eval{ $self->stack_spec }) {
+        $self->bail_out_message('device ['.
+            encode_entities($self->ip) .'] has no spec to load, skipping');
+        return 0;
+    }
+
+    return 1;
 }
 
 no Moose;

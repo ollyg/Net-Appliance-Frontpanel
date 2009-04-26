@@ -99,22 +99,25 @@ sub make_imagemap_text {
 
 sub BUILD {
     my ($self, $params) = @_;
-    $self->logger->debug('    processing port ['. $self->spec->{name} .']');
+    $self->logger->notice('    processing port ['. $self->spec->{name} .']');
 
-    if (!exists $self->spec->{ports_data}->{$self->spec->{name}}) {
-        $self->logger->debug('        skipping rendering, no data from Source');
+    if ($self->spec->{dummy} or
+        exists $self->spec->{ports_data}->{$self->spec->{name}}) {
+
+        my $status = ($self->spec->{dummy} ? 'empty' :
+            $self->spec->{ports_data}->{$self->spec->{name}}->{up});
+
+        $self->spec->{image} =
+            $self->config->port_db->{ $self->spec->{type} }->{ $status };
+
+        $self->make_imagemap_text;
+        $self->load_or_make_image;
+    }
+    else {
+        $self->logger->error('        skipping rendering, no data from Source');
         $self->imagemap("\n        <!-- port [". encode_entities($self->spec->{name})
             ."] not provided by Source, skipping -->");
-        return;
     }
-
-    my $status = ($self->spec->{dummy} ? 'empty' :
-        $self->spec->{ports_data}->{$self->spec->{name}}->{up});
-    $self->spec->{image} =
-        $self->config->port_db->{ $self->spec->{type} }->{ $status };
-
-    $self->make_imagemap_text;
-    $self->load_or_make_image;
 }
 
 no Moose;

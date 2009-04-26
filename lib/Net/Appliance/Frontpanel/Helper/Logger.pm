@@ -6,9 +6,13 @@ use File::Basename;
 
 has 'debug' => (
     is => 'rw',
-    isa => 'Bool',
-    default => ($ENV{PERL_DEV} || 0),
+    isa => 'Int',
+    lazy_build => 1,
 );
+
+sub _build_debug {
+    return ($ENV{PERL_DEV} || 0);
+}
 
 has 'daemon_name' => (
     is => 'ro',
@@ -19,28 +23,37 @@ has 'daemon_name' => (
 has log_dispatch_conf => (
     is => 'ro',
     isa => 'HashRef',
-    lazy => 1,
-    required => 1,
-    default => sub {
-        my $self = shift;
-        return ($self->debug ?
-            {
-                class     => 'Log::Dispatch::Screen',
-                min_level => 'debug',
-                stderr    => 1,
-                # format    => '[%p] %m at %F line %L%n',
-                format    => '[%p] %m%n',
-            }
-            : {
-                class     => 'Log::Dispatch::Syslog',
-                min_level => 'info',
-                facility  => 'daemon',
-                ident     => $self->daemon_name,
-                format    => '[%p] %m',
-            }
-        );
-    },
+    lazy_build => 1,
 );
+
+sub _build_log_dispatch_conf {
+    my $self = shift;
+
+    my $conf_for_level = {
+        0 => {
+            class     => 'Log::Dispatch::Syslog',
+            min_level => 'critical',
+            facility  => 'daemon',
+            ident     =>  $self->daemon_name,
+            format    => '[%p] %m',
+        },
+        1 => {
+            class     => 'Log::Dispatch::Screen',
+            min_level => 'notice',
+            stderr    =>  1,
+            format    => '[%p] %m%n',
+        },
+        2 => {
+            class     => 'Log::Dispatch::Screen',
+            min_level => 'debug',
+            stderr    =>  1,
+            format    => '[%p] %m%n',
+            #format    => '[%p] %m at %F line %L%n',
+        },
+    };
+
+    return $conf_for_level->{$self->debug};
+}
 
 no Moose::Role;
 1;
