@@ -1,0 +1,428 @@
+<?xml version="1.0"?>
+<?oxygen RNGSchema="entity-render.rnc" type="compact"?>
+<classes>
+    <!-- when oXygen eventually supports xpointer in xinclude, this will be better -->
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="module.xml"/>
+
+    <!-- a Cisco 2950 with 24 10/100 ports with 2 fixed 1000BASE-SX uplinks -->
+    <chassis type="cevChassisCat295024sx" image="c295024sx.gif">
+        <portGroup type="cevPortNIC100"
+                   x="77" y="45"
+                   xStep="20" yStep="0"
+                   width="8" height="1"
+                   countDirection="across"/>
+
+        <portGroup type="cevPortNIC100"
+                   x="244" y="45"
+                   xStep="20" yStep="0"
+                   width="8" height="1"
+                   countDirection="across"/>
+
+        <portGroup type="cevPortNIC100"
+                   x="411" y="45"
+                   xStep="20" yStep="0"
+                   width="8" height="1"
+                   countDirection="across"/>
+
+        <!-- I suspect this is the wrong port type -->
+        <container type="cevContainerGbic" x="585" y="44"/>
+        <container type="cevContainerGbic" x="625" y="44"/>
+    </chassis>
+
+    <!-- a Cisco 2950 with 24 10/100 ports -->
+    <chassis type="cevChassisCat295024" image="c295024.gif">
+        <portGroup type="cevPortNIC100"
+                   x="77" y="45"
+                   xStep="20" yStep="0"
+                   width="8" height="1"
+                   countDirection="across"/>
+
+        <portGroup type="cevPortNIC100"
+                   x="244" y="45"
+                   xStep="20" yStep="0"
+                   width="8" height="1"
+                   countDirection="across"/>
+
+        <portGroup type="cevPortNIC100"
+                   x="411" y="45"
+                   xStep="20" yStep="0"
+                   width="8" height="1"
+                   countDirection="across"/>
+
+    </chassis>
+
+    <!-- a Cisco 2950 with 12 10/100 ports -->
+    <chassis type="cevChassisCat295012" image="c295012.gif">
+        <portGroup type="cevPortNIC100"
+                   x="77" y="45"
+                   xStep="20" yStep="0"
+                   width="12" height="1"
+                   countDirection="across"/>
+    </chassis>
+
+    <!-- a Cisco 2950 with 24 10/100 ports and two 10/100/1000 ports -->
+    <chassis type="cevChassisCat2950t24" image="c295024t.gif">
+        <portGroup type="cevPortNIC100"
+                   x="77" y="45"
+                   xStep="20" yStep="0"
+                   width="8" height="1"
+                   countDirection="across"/>
+
+        <portGroup type="cevPortNIC100"
+                   x="244" y="45"
+                   xStep="20" yStep="0"
+                   width="8" height="1"
+                   countDirection="across"/>
+
+        <portGroup type="cevPortNIC100"
+                   x="411" y="45"
+                   xStep="20" yStep="0"
+                   width="8" height="1"
+                   countDirection="across"/>
+
+        <container type="cevPortBaseTEther" x="593" y="45"/>
+        <container type="cevPortBaseTEther" x="615" y="45"/>
+    </chassis>
+
+
+    <!-- a Cisco 2950 with 24 10/100 ports and two fixed 1000BASE-X uplink ports -->
+    <chassis type="cevChassisCat295024G" image="c295024g.gif">
+        <portGroup type="cevPortNIC100"
+                   x="87" y="25"
+                   xStep="20" yStep="16"
+                   width="6" height="2"
+                   countDirection="down"/>
+
+        <portGroup type="cevPortNIC100"
+                   x="250" y="25"
+                   xStep="20" yStep="16"
+                   width="6" height="2"
+                   countDirection="down"/>
+
+        <!-- I suspect this is the wrong port type -->
+        <container type="cevContainerGbic" x="471" y="42"/>
+        <container type="cevContainerGbic" x="586" y="42"/>
+    </chassis>
+
+    <!-- a Cisco 2940 with 8 10/100 ports + 1 100BASE-FX or 1 1000BASE-X SFP port -->
+    <chassis type="cevChassis29408TF" image="c29408tf.gif">
+        <portGroup type="cevPortNIC100"
+                   x="76" y="50"
+                   xStep="23" yStep="0"
+                   width="8" height="1"
+                   countDirection="across"/>
+
+        <!-- location of these may be wrong -->
+        <port type="cevPort100BaseFX" x="305" y="50"/>
+        <container type="cevContainerSFP" x="342" y="50"/>
+    </chassis>
+
+    <!-- a Cisco 3560 with 8 10/100 PoE ports and 1 10/100/1000 or SFP port -->
+    <chassis type="cevChassisCat35608PC" image="c3560_8_1.gif">
+    <!-- <chassis type="cevChassis.596" image="c3560_8_1.gif"> -->
+        <portGroup type="cevPortNIC100"
+                   x="113" y="57"
+                   xStep="19" yStep="0"
+                   width="8" height="1"
+                   countDirection="across"/>
+        
+        <!-- location of these may be wrong -->
+        <port type="cevPortBaseTEther" x="397" y="55"/>
+        <container type="cevContainerSFP" x="418" y="55"/>
+    </chassis>
+
+    <!-- <chassis type="cevChassisCat35608PC" image="c3560_8_1.gif"> -->
+    <chassis type="cevChassis.596" image="c3560_8_1.gif">
+        <portGroup type="cevPortNIC100"
+                   x="113" y="57"
+                   xStep="19" yStep="0"
+                   width="8" height="1"
+                   countDirection="across"/>
+        
+        <!-- location of these may be wrong -->
+        <port type="cevPortBaseTEther" x="397" y="55"/>
+        <container type="cevContainerSFP" x="418" y="55"/>
+    </chassis>
+
+    <!-- a Cisco 3560 with 24 10/100/1000 PoE ports and two X2 slots -->
+    <chassis type="cevChassisCat3560E24PD" image="c3580_24_PoE.gif">
+        <portGroup type="cevPortBaseTEther"
+                   x="326" y="18"
+                   xStep="20" yStep="16"
+                   width="6" height="2"
+                   countDirection="down"/>
+        
+        <portGroup type="cevPortBaseTEther"
+                   x="454" y="18"
+                   xStep="20" yStep="16"
+                   width="6" height="2"
+                   countDirection="down"/>
+
+        <!-- could have had a containergroup for these two -->
+        <container type="cevContainer10GigBasePort" x="599" y="15"/>
+        <container type="cevContainer10GigBasePort" x="599" y="39"/>
+    </chassis>
+
+    <!-- a Cisco 3560 with 24 10/100/1000 ports with PoE and four SFP ports -->
+    <chassis type="cevChassisCat3560G24PS" image="c356024g_4p.gif">
+        <portGroup type="cevPortBaseTEther"
+                   x="288" y="29"
+                   xStep="20" yStep="16"
+                   width="6" height="2"
+                   countDirection="down"/>
+
+        <portGroup type="cevPortBaseTEther"
+                   x="444" y="29"
+                   xStep="20" yStep="16"
+                   width="6" height="2"
+                   countDirection="down"/>
+
+        <containerGroup type="cevContainerSFP"
+                        x="578" y="26"
+                        xStep="36" yStep="21"
+                        width="2" height="2"
+                        countDirection="down"/>
+    </chassis>
+
+    <!-- a Cisco 3560 with 24 10/100 ports with PoE and 2 SFP ports -->
+    <chassis type="cevChassisCat356024PS" image="c356024_2p.gif">
+        <portGroup type="cevPortNIC100"
+                   x="115" y="25"
+                   xStep="20" yStep="16"
+                   width="6" height="2"
+                   countDirection="down"/>
+
+        <portGroup type="cevPortNIC100"
+                   x="296" y="25"
+                   xStep="20" yStep="16"
+                   width="6" height="2"
+                   countDirection="down"/>
+
+        <container type="cevContainerSFP" x="549" y="38"/>
+        <container type="cevContainerSFP" x="592" y="38"/>
+    </chassis>
+
+    <!-- a Cisco 3550 with 48 10/100 ports and two Gbic slots-->
+    <chassis type="catalyst355048" image="c355048.gif">
+        <portGroup type="cevPortNIC100"
+                   x="72" y="28"
+                   xStep="20" yStep="16"
+                   width="8" height="2"
+                   countDirection="down"/>
+        
+        <portGroup type="cevPortNIC100"
+                   x="238" y="28"
+                   xStep="20" yStep="16"
+                   width="8" height="2"
+                   countDirection="down"/>
+        
+        <portGroup type="cevPortNIC100"
+                   x="404" y="28"
+                   xStep="20" yStep="16"
+                   width="8" height="2"
+                   countDirection="down"/>
+
+        <!-- I suspect this is the wrong port type -->
+        <container type="cevContainerGbic" x="586" y="12"/>
+        <container type="cevContainerGbic" x="586" y="48"/>
+    </chassis>
+
+    <!-- a Cisco 3750 with 48 10/100 PoE ports and four SFP slots -->
+    <chassis type="cevChassisCat375048PS" image="c375048_4p.gif">
+        <portGroup type="cevPortNIC100"
+                   x="72" y="28"
+                   xStep="20" yStep="16"
+                   width="8" height="2"
+                   countDirection="down"/>
+        
+        <portGroup type="cevPortNIC100"
+                   x="242" y="28"
+                   xStep="20" yStep="16"
+                   width="8" height="2"
+                   countDirection="down"/>
+        
+        <portGroup type="cevPortNIC100"
+                   x="412" y="28"
+                   xStep="20" yStep="16"
+                   width="8" height="2"
+                   countDirection="down"/>
+
+        <containerGroup type="cevContainerSFP"
+                        x="578" y="26"
+                        xStep="32" yStep="21"
+                        width="2" height="2"
+                        countDirection="down"/>
+    </chassis>
+
+    <!-- a Cisco 3750 with 48 10/100/1000 PoE ports and four SFP slots -->
+    <chassis type="cevChassisCat3750G48PS" image="c3750g48_4p.gif">
+        <portGroup type="cevPortBaseTEther"
+                   x="72" y="28"
+                   xStep="20" yStep="16"
+                   width="8" height="2"
+                   countDirection="down"/>
+        
+        <portGroup type="cevPortBaseTEther"
+                   x="242" y="28"
+                   xStep="20" yStep="16"
+                   width="8" height="2"
+                   countDirection="down"/>
+        
+        <portGroup type="cevPortBaseTEther"
+                   x="412" y="28"
+                   xStep="20" yStep="16"
+                   width="8" height="2"
+                   countDirection="down"/>
+
+        <containerGroup type="cevContainerSFP"
+                        x="585" y="27"
+                        xStep="36" yStep="22"
+                        width="2" height="2"
+                        countDirection="down"/>
+    </chassis>
+
+    <!-- a Cisco 3750 with 48 10/100/1000 ports and four SFP slots -->
+    <chassis type="cevChassisCat3750G48TS" image="c3750g48_4.gif">
+        <portGroup type="cevPortBaseTEther"
+                   x="72" y="27"
+                   xStep="20" yStep="16"
+                   width="8" height="2"
+                   countDirection="down"/>
+        
+        <portGroup type="cevPortBaseTEther"
+                   x="242" y="27"
+                   xStep="20" yStep="16"
+                   width="8" height="2"
+                   countDirection="down"/>
+        
+        <portGroup type="cevPortBaseTEther"
+                   x="412" y="27"
+                   xStep="20" yStep="16"
+                   width="8" height="2"
+                   countDirection="down"/>
+
+        <containerGroup type="cevContainerSFP"
+                        x="587" y="27"
+                        xStep="35" yStep="22"
+                        width="2" height="2"
+                        countDirection="down"/>
+    </chassis>
+
+    <!-- a Cisco 3750 with 24 10/100/1000 PoE ports and four SFP slots -->
+    <chassis type="cevChassisCat3750G24PS" image="c3750g24_4p.gif">
+        <portGroup type="cevPortBaseTEther"
+                   x="288" y="28"
+                   xStep="20" yStep="16"
+                   width="6" height="2"
+                   countDirection="down"/>
+
+        <portGroup type="cevPortBaseTEther"
+                   x="440" y="28"
+                   xStep="20" yStep="16"
+                   width="6" height="2"
+                   countDirection="down"/>
+
+        <containerGroup type="cevContainerSFP"
+                        x="584" y="26"
+                        xStep="37" yStep="22"
+                        width="2" height="2"
+                        countDirection="down"/>
+    </chassis>
+
+    <!-- a Cisco 3750 with 24 10/100/1000 ports and four SFP slots -->
+    <chassis type="cevChassisCat375024TS" image="c3750g_24_4.gif">
+        <portGroup type="cevPortBaseTEther"
+                   x="128" y="40"
+                   xStep="20" yStep="16"
+                   width="6" height="2"
+                   countDirection="down"/>
+
+        <portGroup type="cevPortBaseTEther"
+                   x="302" y="40"
+                   xStep="20" yStep="16"
+                   width="6" height="2"
+                   countDirection="down"/>
+
+        <containerGroup type="cevContainerSFP"
+                        x="498" y="55"
+                        xStep="22" yStep="0"
+                        width="4" height="1"
+                        countDirection="across"/>
+    </chassis>
+
+    <!-- a Cisco 3750 with 24 10/100 ports and two SFP slots -->
+    <chassis type="cevChassisCat375024" image="c375024_2.gif">
+        <portGroup type="cevPortNIC100"
+                   x="110" y="25"
+                   xStep="20" yStep="16"
+                   width="6" height="2"
+                   countDirection="down"/>
+        
+        <portGroup type="cevPortNIC100"
+                   x="259" y="25"
+                   xStep="20" yStep="16"
+                   width="6" height="2"
+                   countDirection="down"/>
+
+        <!-- could have had a containergroup for these two -->
+        <container type="cevContainerSFP" x="469" y="39"/>
+        <container type="cevContainerSFP" x="533" y="39"/>
+    </chassis>
+
+    <!-- a Cisco 3750 with 12 SFP ports -->
+    <chassis type="cevChassisCat3750Ge12Sfp" image="c3750g_12s.gif">
+        <containerGroup type="cevContainerSFP"
+                        x="319" y="40"
+                        xStep="22" yStep="0"
+                        width="4" height="1"
+                        countDirection="across"/>
+        <containerGroup type="cevContainerSFP"
+                        x="420" y="40"
+                        xStep="22" yStep="0"
+                        width="4" height="1"
+                        countDirection="across"/>
+        <containerGroup type="cevContainerSFP"
+                        x="521" y="40"
+                        xStep="22" yStep="0"
+                        width="4" height="1"
+                        countDirection="across"/>
+    </chassis>
+
+    <!-- a Cisco 7600 series chassis, with six module slots -->
+    <chassis type="cevChassisCisco7606" image="7606_front.gif">
+        <containerGroup type="cevContainerSlot"
+                        x="52" y="63"
+                        xStep="0" yStep="81"
+                        width="1" height="6" rotate="90"
+                        countDirection="down"/>
+    </chassis>
+
+<!-- for testing
+    <chassis type="cevChassisCisco7606" image="7606_front.gif">
+        <containerGroup type="cevContainerSlot"
+                        x="600" y="10"
+                        xStep="-81" yStep="0"
+                        width="6" height="1" rotate="270"
+                        countDirection="across"/>
+    </chassis>
+-->
+
+    <!-- a Cisco 6500 series chassis, with nine module slots -->
+    <chassis type="cevChassisCat6509" image="ws-x6x09-rear.gif">
+        <containerGroup type="cevContainerSlot"
+                        x="52" y="13"
+                        xStep="0" yStep="81"
+                        width="1" height="9"
+                        countDirection="down"/>
+    </chassis>
+
+    <!-- a Cisco 6500 series chassis, with six module slots -->
+    <chassis type="cevChassisCat6506" image="ws-x6x06-rear.gif">
+        <containerGroup type="cevContainerSlot"
+                        x="52" y="13"
+                        xStep="0" yStep="81"
+                        width="1" height="6"
+                        countDirection="down"/>
+    </chassis>
+
+</classes>
