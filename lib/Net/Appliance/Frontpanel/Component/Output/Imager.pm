@@ -14,7 +14,7 @@ has image => (
 
 sub _build_image {
     my $self = shift;
-    return Imager->new;
+    return Imager->new(xsize => 1, ysize => 1, channels => 4);
 }
 
 sub load_or_make_image {

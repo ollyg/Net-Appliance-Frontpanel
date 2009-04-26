@@ -101,15 +101,19 @@ sub BUILD {
     my ($self, $params) = @_;
     $self->logger->debug('... processing port ['. $self->spec->{name} .']');
 
+    if (!exists $self->spec->{ports_data}->{$self->spec->{name}}) {
+        $self->imagemap("\n        <!-- port [". encode_entities($self->spec->{name})
+            ."] not provided by Source, skipping -->");
+        return;
+    }
+
     my $status = ($self->spec->{dummy} ? 'empty' :
         $self->spec->{ports_data}->{$self->spec->{name}}->{up});
-    return if !defined $status;
-
     $self->spec->{image} =
         $self->config->port_db->{ $self->spec->{type} }->{ $status };
 
-    $self->load_or_make_image;
     $self->make_imagemap_text;
+    $self->load_or_make_image;
 }
 
 no Moose;
