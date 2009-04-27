@@ -19,6 +19,20 @@ has 'imager' => (
     default => sub{ (shift)->config->stash->{fp_imager} || 'Imager' },
 );
 
+sub BUILDARGS {
+    my $class = shift;
+    my $params = $class->SUPER::BUILDARGS(@_);
+
+    if (!exists $params->{config} and exists $params->{configfile}) {
+        Class::MOP::load_class('Net::Appliance::Frontpanel::Config');
+        return {
+            %$params,
+            config => Net::Appliance::Frontpanel::Config->new($params),
+        };
+    }
+    return $params;
+}
+
 sub BUILD {
     my ($self, $params) = @_;
 
