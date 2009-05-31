@@ -1,178 +1,242 @@
 {
-    '10GBIC-Green.gif' => {
-        w       => 42,
-        h       => 18,
-        flood => { color => 'green2' },
-    },
-    '10GBIC-empty.gif' => {
-        w       => 42,
-        h       => 18,
-        flood => { color => 'grey20' },
-    },
-    'GBIC-empty.gif' => {
-        w       => 44,
-        h       => 22,
-        flood => { color => 'grey20' },
-    },
-    'GBIC-green.gif' => {
-        w       => 44,
-        h       => 22,
-        flood => { color => 'green2' },
-    },
-    'POSGBIC-empty.gif' => {
-        w       => 44,
-        h       => 22,
-        flood => { color => 'grey20' },
-    },
-    'e100BaseF-green.gif' => {
-        w       => 20,
-        h       => 19,
-        flood => { color => 'green2' },
-    },
-    'e100BaseF-white.gif' => {
-        w       => 20,
-        h       => 19,
-        flood => { color => 'snow1' },
-    },
-    'gray.gif' => {
-        w       => 19,
-        h       => 15,
-        flood => { color => 'plum' },
-    },
-    'green.gif' => {
-        w       => 19,
-        h       => 15,
-        flood => { color => 'green2' },
-    },
-    'sfp_empty_gray.gif' => {
-        w       => 21,
-        h       => 16,
-        flood => { color => 'grey20' },
-    },
-    'sfp_gray.gif' => {
-        w       => 21,
-        h       => 16,
-        flood => { color => 'plum' },
-    },
-    'sfp_green.gif' => {
-        w       => 21,
-        h       => 16,
-        flood => { color => 'green2' },
-    },
-    'sfp_tx_gray.gif' => {
-        w       => 21,
-        h       => 16,
-        flood => { color => 'plum' },
-    },
-    'sfp_tx_green.gif' => {
-        w       => 21,
-        h       => 16,
-        flood => { color => 'green2' },
-    },
-    # modules
-    'WS-SUP7203BXL.gif' => {
-        w       => 667,
-        h       => 81,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'LightYellow', bg => 'bisque1' } },
-    },
-    'wsx6724sfp.gif' => {
-        w       => 667,
-        h       => 81,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'LightYellow', bg => 'bisque1' } },
-    },
-    'wsx6524mm.gif' => {
-        w       => 667,
-        h       => 81,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'LightYellow', bg => 'bisque1' } },
-    },
-    'wsx6408agbic.gif' => {
-        w       => 667,
-        h       => 81,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'LightYellow', bg => 'bisque1' } },
-    },
-    'wssvcfwm1.gif' => {
-        w       => 667,
-        h       => 81,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'LightYellow', bg => 'bisque1' } },
-    },
-    'wsx670410ge.gif' => {
-        w       => 667,
-        h       => 81,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'LightYellow', bg => 'bisque1' } },
-    },
-    # chassis
-    'c3560_8_1.gif' => {
-        w       => 490,
-        h       => 80,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'beige', bg => 'wheat' } },
-    },
-    'c3580_24_PoE.gif' => {
-        w       => 660,
-        h       => 80,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'beige', bg => 'wheat' } },
-    },
-    'c356024g_4p.gif' => {
-        w       => 660,
-        h       => 80,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'beige', bg => 'wheat' } },
-    },
-    'c356024_2p.gif' => {
-        w       => 660,
-        h       => 80,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'beige', bg => 'wheat' } },
-    },
-    'c375048_4p.gif' => {
-        w       => 660,
-        h       => 80,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'beige', bg => 'wheat' } },
-    },
-    'c3750g24_4p.gif' => {
-        w       => 660,
-        h       => 80,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'beige', bg => 'wheat' } },
-    },
-    'c375024_2.gif' => {
-        w       => 660,
-        h       => 80,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'beige', bg => 'wheat' } },
-    },
-    'c3750g_12s.gif' => {
-        w       => 660,
-        h       => 80,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'beige', bg => 'wheat' } },
-    },
-    '7606_front.gif' => {
-        w       => 728,
-        h       => 560,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'beige', bg => 'wheat' } },
-    },
-    'ws-x6x09-rear.gif' => {
-        w       => 728,
-        h       => 955,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'beige', bg => 'wheat' } },
-    },
-    'ws-x6x06-rear.gif' => {
-        w       => 728,
-        h       => 712,
-        border => 'SteelBlue4',
-        flood => { fill => { hatch => 'check4x4', fg => 'beige', bg => 'wheat' } },
-    },
-
+           "10GBIC-empty.gif"    => {
+                                      flood => { color => 'grey20' },
+                                      h     => 18,
+                                      w     => 42
+                                    },
+           "10GBIC-Green.gif"    => {
+                                      flood => { color => 'green2' },
+                                      h     => 18,
+                                      w     => 42
+                                    },
+           "7606_front.gif"      => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'wheat',
+                                                  fg    => 'beige',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 560,
+                                      w      => 728
+                                    },
+           "c356024_2p.gif"      => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'wheat',
+                                                  fg    => 'beige',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 80,
+                                      w      => 660
+                                    },
+           "c356024g_4p.gif"     => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'wheat',
+                                                  fg    => 'beige',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 80,
+                                      w      => 660
+                                    },
+           "c3560_8_1.gif"       => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'wheat',
+                                                  fg    => 'beige',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 80,
+                                      w      => 490
+                                    },
+           "c3580_24_PoE.gif"    => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'wheat',
+                                                  fg    => 'beige',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 80,
+                                      w      => 660
+                                    },
+           "c375024_2.gif"       => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'wheat',
+                                                  fg    => 'beige',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 80,
+                                      w      => 660
+                                    },
+           "c375048_4p.gif"      => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'wheat',
+                                                  fg    => 'beige',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 80,
+                                      w      => 660
+                                    },
+           "c3750g24_4p.gif"     => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'wheat',
+                                                  fg    => 'beige',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 80,
+                                      w      => 660
+                                    },
+           "c3750g_12s.gif"      => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'wheat',
+                                                  fg    => 'beige',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 80,
+                                      w      => 660
+                                    },
+           "e100BaseF-green.gif" => {
+                                      flood => { color => 'green2' },
+                                      h     => 19,
+                                      w     => 20
+                                    },
+           "e100BaseF-white.gif" => {
+                                      flood => { color => 'snow1' },
+                                      h     => 19,
+                                      w     => 20
+                                    },
+           "GBIC-empty.gif"      => {
+                                      flood => { color => 'grey20' },
+                                      h     => 22,
+                                      w     => 44
+                                    },
+           "GBIC-green.gif"      => {
+                                      flood => { color => 'green2' },
+                                      h     => 22,
+                                      w     => 44
+                                    },
+           "gray.gif"            => {
+                                      flood => { color => 'plum' },
+                                      h     => 15,
+                                      w     => 19
+                                    },
+           "green.gif"           => {
+                                      flood => { color => 'green2' },
+                                      h     => 15,
+                                      w     => 19
+                                    },
+           "POSGBIC-empty.gif"   => {
+                                      flood => { color => 'grey20' },
+                                      h     => 22,
+                                      w     => 44
+                                    },
+           "sfp_empty_gray.gif"  => {
+                                      flood => { color => 'grey20' },
+                                      h     => 16,
+                                      w     => 21
+                                    },
+           "sfp_gray.gif"        => {
+                                      flood => { color => 'plum' },
+                                      h     => 16,
+                                      w     => 21
+                                    },
+           "sfp_green.gif"       => {
+                                      flood => { color => 'green2' },
+                                      h     => 16,
+                                      w     => 21
+                                    },
+           "sfp_tx_gray.gif"     => {
+                                      flood => { color => 'plum' },
+                                      h     => 16,
+                                      w     => 21
+                                    },
+           "sfp_tx_green.gif"    => {
+                                      flood => { color => 'green2' },
+                                      h     => 16,
+                                      w     => 21
+                                    },
+           "WS-SUP7203BXL.gif"   => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'bisque1',
+                                                  fg    => 'LightYellow',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 81,
+                                      w      => 667
+                                    },
+           "wssvcfwm1.gif"       => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'bisque1',
+                                                  fg    => 'LightYellow',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 81,
+                                      w      => 667
+                                    },
+           "wsx6408agbic.gif"    => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'bisque1',
+                                                  fg    => 'LightYellow',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 81,
+                                      w      => 667
+                                    },
+           "wsx6524mm.gif"       => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'bisque1',
+                                                  fg    => 'LightYellow',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 81,
+                                      w      => 667
+                                    },
+           "wsx670410ge.gif"     => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'bisque1',
+                                                  fg    => 'LightYellow',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 81,
+                                      w      => 667
+                                    },
+           "wsx6724sfp.gif"      => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'bisque1',
+                                                  fg    => 'LightYellow',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 81,
+                                      w      => 667
+                                    },
+           "ws-x6x06-rear.gif"   => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'wheat',
+                                                  fg    => 'beige',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 712,
+                                      w      => 728
+                                    },
+           "ws-x6x09-rear.gif"   => {
+                                      border => 'SteelBlue4',
+                                      flood  => { fill => {
+                                                  bg    => 'wheat',
+                                                  fg    => 'beige',
+                                                  hatch => 'check4x4'
+                                                } },
+                                      h      => 955,
+                                      w      => 728
+                                    }
 }
-
