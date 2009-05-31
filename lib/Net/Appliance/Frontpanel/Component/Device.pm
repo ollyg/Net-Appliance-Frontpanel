@@ -1,4 +1,4 @@
-package Net::Appliance::Frontpanel::Component::Stack;
+package Net::Appliance::Frontpanel::Component::Device;
 use Moose;
 
 extends 'Net::Appliance::Frontpanel::Component';
@@ -37,14 +37,14 @@ sub _build_ports_data {
     return $ports;
 }
 
-has stack_spec => (
+has device_spec => (
     is => 'ro',
     isa => 'ArrayRef[HashRef]',
     auto_deref => 1,
     lazy_build => 1,
 );
 
-sub _build_stack_spec {
+sub _build_device_spec {
     my $self = shift;
     return $self->config->load_spec($self->ip);
 }
@@ -54,8 +54,8 @@ sub BUILD {
     $self->pre_flight_check_ok or return;
     $self->logger->notice('building frontpanel for device ['. $self->ip .']');
 
-    # process each of the chassis making up this stack
-    foreach my $device ($self->stack_spec) {
+    # process each of the chassis making up this device
+    foreach my $device ($self->device_spec) {
         my $current_height = ($self->image->getheight || 0);
 
         my $chassis = Net::Appliance::Frontpanel::Component::Module->new({
@@ -97,7 +97,7 @@ sub pre_flight_check_ok {
         return 0;
     }
 
-    if (! eval{ $self->stack_spec }) {
+    if (! eval{ $self->device_spec }) {
         $self->bail_out_message('device ['.
             encode_entities($self->ip) .'] has no spec to load, skipping');
         return 0;
