@@ -22,7 +22,7 @@ has 'xml_parser' => (
 
 has 'hardware_classes' => (
     is => 'ro',
-    isa => 'XML::LibXML::Document',
+    isa => 'XML::LibXML::Element',
     lazy_build => 1,
 );
 
@@ -83,7 +83,7 @@ sub build_tree {
         foreach my $kid ( @{$modules{$id}{children}{$kidtype}} ) {
 
             next if !defined $kid;
-            build_tree($kid, $e, $seen, %modules);
+            $self->build_tree($kid, $e, $seen, %modules);
         }
     }
 }

@@ -56,7 +56,8 @@ has 'share_dir' => (
 sub _build_share_dir {
     my $self = shift;
     return ($self->stash->{fp_share_dir}
-        || '/usr/local/share/frontpanel');
+        || File::ShareDir::dist_dir('Net-Appliance-Frontpanel'));
+#         || '/usr/local/share/frontpanel');
 }
 
 # dir for generated files
@@ -70,8 +71,7 @@ has 'cache_dir' => (
 sub _build_cache_dir {
     my $self = shift;
     return ($self->stash->{fp_cache_dir}
-        || File::ShareDir::dist_dir('Net-Appliance-Frontpanel'));
-#        || '/var/tmp/frontpanel');
+        || '/var/tmp/frontpanel');
 }
 
 # add file name to read-only dir loc
@@ -124,7 +124,7 @@ sub load_file {
 
 sub load_share {
     my ($self, $file) = @_;
-    return $self->load_file($self->share_loc($file));
+    return $self->load_file($self->share_loc('/'. $file));
 }
 
 # load perl data structure for any file in the generated dir loc, data subdir
