@@ -11,7 +11,7 @@ dc:description [ "This schema will validate layout descriptions."]
 dc:date [ "2008-03-14" ]
 dc:language [ "en" ]
 dc:rights [
-  "Copyright University of Oxford, 2008. \x{a}" ~
+  "Copyright Oliver Gorwits, 2009. \x{a}" ~
   "Released under the Free Software Foundation GFDL."
 ]
 
