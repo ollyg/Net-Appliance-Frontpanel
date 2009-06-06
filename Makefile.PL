@@ -1,4 +1,5 @@
 use inc::Module::Install 0.76;
+perl_version '5.008001';
 
 all_from      'lib/Net/Appliance/Frontpanel.pm';
 
