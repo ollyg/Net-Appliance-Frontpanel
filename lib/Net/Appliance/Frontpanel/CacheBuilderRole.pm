@@ -9,14 +9,14 @@ use File::Temp;
 has 'xslt_parser' => (
     is => 'ro',
     isa => 'XML::LibXSLT',
-    deafult => sub { return XML::LibXSLT->new() },
+    default => sub { XML::LibXSLT->new() },
     lazy => 1,
 );
 
 has 'xml_parser' => (
     is => 'ro',
     isa => 'XML::LibXML',
-    deafult => sub { return XML::LibXML->new() },
+    default => sub { XML::LibXML->new() },
     lazy => 1,
 );
 

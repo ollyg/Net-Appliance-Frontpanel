@@ -29,7 +29,8 @@ has 'image_db' => (
 
 sub _build_image_db {
     my $self = shift;
-    $self->load_data($self->image_db_file);
+    # XXX hack, we ship this and are not yet generating it
+    $self->load_share($self->image_db_file);
 }
 
 has 'port_db' => (
@@ -115,6 +116,13 @@ sub load_file {
         return undef;
     }
     return do $disk_file;
+}
+
+# load perl data structure for any file in the read-only share loc
+
+sub load_data {
+    my ($self, $file) = @_;
+    return $self->load_file($self->share_loc($file));
 }
 
 # load perl data structure for any file in the generated dir loc, data subdir
