@@ -3,6 +3,20 @@ use Moose::Role;
 
 requires qw(stash);
 
+has 'image_db_file' => (
+    is => 'ro',
+    isa => 'Str',
+    default => 'image_db.pl',
+    lazy => 1,
+);
+
+has 'port_db_file' => (
+    is => 'ro',
+    isa => 'Str',
+    default => 'port_db.pl',
+    lazy => 1,
+);
+
 has 'image_db' => (
     is => 'ro',
     isa => 'HashRef[HashRef]',
@@ -10,7 +24,8 @@ has 'image_db' => (
 );
 
 sub _build_image_db {
-    (shift)->load_data('image_db.pl');
+    my $self = shift;
+    $self->load_data($self->image_db_file);
 }
 
 has 'port_db' => (
@@ -20,7 +35,8 @@ has 'port_db' => (
 );
 
 sub _build_port_db {
-    (shift)->load_data('port_db.pl');
+    my $self = shift;
+    $self->load_data($self->port_db_file);
 }
 
 has 'share_dir' => (
@@ -81,14 +97,19 @@ sub load_file {
     return do $disk_file;
 }
 
-sub load_data {
-    my ($self, $file) = @_;
-    return $self->load_file($self->data_loc($file));
+sub spec_file {
+    my ($self, $ip) = @_;
+    return $self->data_loc($ip .'_spec.pl');
 }
 
 sub load_spec {
     my ($self, $device) = @_;
-    return $self->load_data($device .'_spec.pl');
+    return $self->load_file($self->spec_file($device));
+}
+
+sub load_data {
+    my ($self, $file) = @_;
+    return $self->load_file($self->data_loc($file));
 }
 
 no Moose::Role;
