@@ -1,6 +1,7 @@
 package Net::Appliance::Frontpanel::Config::Cache;
 use Moose::Role;
 
+use File::ShareDir;
 requires qw(stash);
 
 # file names
@@ -69,7 +70,8 @@ has 'cache_dir' => (
 sub _build_cache_dir {
     my $self = shift;
     return ($self->stash->{fp_cache_dir}
-        || '/var/tmp/frontpanel');
+        || File::ShareDir::module_dir('Net::Appliance::Frontpanel'));
+#        || '/var/tmp/frontpanel');
 }
 
 # add file name to read-only dir loc
@@ -120,7 +122,7 @@ sub load_file {
 
 # load perl data structure for any file in the read-only share loc
 
-sub load_data {
+sub load_share {
     my ($self, $file) = @_;
     return $self->load_file($self->share_loc($file));
 }
