@@ -16,8 +16,8 @@ GetOptions (
     'build' => \$build,
     'image-map' => \$imagemap,
     'image' => \$image,
-    'source' => \$source,
-    'configfile' => \$configfile,
+    'source=s' => \$source,
+    'configfile=s' => \$configfile,
 );
 
 my $panel = Net::Appliance::Frontpanel->new(
@@ -41,6 +41,27 @@ elsif ($imagemap) {
 elsif ($image) {
     croak "must pass an IP address parameter" if !defined $ip;
     print $panel->image_data;
+}
+else {
+    print <<HELPEND;
+$0: manager for Frontpanel image and imagemap creation
+
+usage:
+
+  frontpanel --build-all             Build metadata cache for all known devices
+  frontpanel --build 192.0.2.1       Build metadata cache for specified device
+
+  frontpanel --image-map 192.0.2.1   Output HTML Image Map for specified device
+  frontpanel --image 192.0.2.1 > file.png
+                                     Output PNG of frontpanel image for specified device
+options:
+
+  --configfile          Specify alternate config file to Source driver
+  --source <Source>     Use a diffrent Source driver
+
+HELPEND
+
+    exit 1;
 }
 
 exit 0;
