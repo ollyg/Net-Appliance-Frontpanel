@@ -19,7 +19,7 @@ requires      'File::ShareDir' => 0;
 
 # test_requires 'Test::More'       => '0.47';
 
-# Default version
 install_share;
+install_script 'script/frontpanel';
 
 WriteAll;

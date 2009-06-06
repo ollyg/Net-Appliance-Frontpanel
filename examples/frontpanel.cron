@@ -1,0 +1,2 @@
+# MIN HR DAY MON DOW USER COMMAND
+15 07  * * *  root /usr/bin/frontpanel --build-all

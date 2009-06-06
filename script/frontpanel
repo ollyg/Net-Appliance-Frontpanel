@@ -1,0 +1,47 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings FATAL => 'all';
+
+use Net::Appliance::Frontpanel;
+use Getopt::Long;
+use Carp qw(croak);
+
+my ($buildall, $build, $imagemap, $image);
+my $source = 'Netdisco';
+my $configfile = '/etc/netdisco/netdisco.conf';
+
+GetOptions (
+    'build-all' => \$buildall,
+    'build' => \$build,
+    'image-map' => \$imagemap,
+    'image' => \$image,
+    'source' => \$source,
+    'configfile' => \$configfile,
+);
+
+my $panel = Net::Appliance::Frontpanel->new(
+    configfile => $configfile,
+    source => $source,
+);
+my $ip = shift @ARGV;
+$panel->ip($ip) if defined $ip;
+
+if ($buildall) {
+    $panel->make_cache_all;
+}
+elsif ($build) {
+    croak "must pass an IP address parameter" if !defined $ip;
+    $panel->make_device_cache($ip);
+}
+elsif ($imagemap) {
+    croak "must pass an IP address parameter" if !defined $ip;
+    print $panel->image_map;
+}
+elsif ($image) {
+    croak "must pass an IP address parameter" if !defined $ip;
+    print $panel->image_data;
+}
+
+exit 0;
+__END__
