@@ -142,7 +142,7 @@ sub make_device_cache {
     $doc->toFile( $tempdoc->filename );
 
     $self->transform_and_write_out(
-        xml  => $self->config->xml_loc($tempdoc->filename),
+        xml  => $tempdoc->filename,
         xslt => $self->config->xml_loc('device-spec2perl.xsl'),
         out  => $self->config->spec_file($ip),
     );

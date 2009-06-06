@@ -3,19 +3,23 @@ use Moose::Role;
 
 requires qw(stash);
 
+# file names
+
 has 'image_db_file' => (
-    is => 'ro',
+    is => 'rw',
     isa => 'Str',
     default => 'image_db.pl',
     lazy => 1,
 );
 
 has 'port_db_file' => (
-    is => 'ro',
+    is => 'rw',
     isa => 'Str',
     default => 'port_db.pl',
     lazy => 1,
 );
+
+# perl data structures auto-loaded
 
 has 'image_db' => (
     is => 'ro',
@@ -39,6 +43,8 @@ sub _build_port_db {
     $self->load_data($self->port_db_file);
 }
 
+# dir for shipped read-only files
+
 has 'share_dir' => (
     is => 'ro',
     isa => 'Str',
@@ -50,6 +56,8 @@ sub _build_share_dir {
     return ($self->stash->{fp_share_dir}
         || '/usr/local/share/frontpanel');
 }
+
+# dir for generated files
 
 has 'cache_dir' => (
     is => 'ro',
@@ -63,30 +71,42 @@ sub _build_cache_dir {
         || '/var/tmp/frontpanel');
 }
 
+# add file name to read-only dir loc
+
 sub share_loc {
     my ($self, $file) = @_;
     return $self->share_dir . $file;
 }
+
+# add file name to generated dir loc
 
 sub cache_loc {
     my ($self, $file) = @_;
     return $self->cache_dir . $file;
 }
 
+# add file to read-only dir loc, xml subdir
+
 sub xml_loc {
     my ($self, $file) = @_;
-    return $self->cache_loc('/xml/'. $file);
+    return $self->share_loc('/xml/'. $file);
 }
+
+# add file to read-only dir loc, images subdir
+
+sub image_loc {
+    my ($self, $file) = @_;
+    return $self->share_loc('/images/' . $file);
+}
+
+# add file to generated dir loc, data subdir
 
 sub data_loc {
     my ($self, $file) = @_;
     return $self->cache_loc('/data/'. $file);
 }
 
-sub image_loc {
-    my ($self, $file) = @_;
-    return $self->share_loc('/images/' . $file);
-}
+# load perl data structure in a file
 
 sub load_file {
     my ($self, $disk_file) = @_;
@@ -97,19 +117,25 @@ sub load_file {
     return do $disk_file;
 }
 
+# load perl data structure for any file in the generated dir loc, data subdir
+
+sub load_data {
+    my ($self, $file) = @_;
+    return $self->load_file($self->data_loc($file));
+}
+
+# absolute path of a _spec file, in the generated dir loc, data subdir
+
 sub spec_file {
     my ($self, $ip) = @_;
     return $self->data_loc($ip .'_spec.pl');
 }
 
+# load perl data structure for a _spec file
+
 sub load_spec {
     my ($self, $device) = @_;
     return $self->load_file($self->spec_file($device));
-}
-
-sub load_data {
-    my ($self, $file) = @_;
-    return $self->load_file($self->data_loc($file));
 }
 
 no Moose::Role;
