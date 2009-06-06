@@ -95,11 +95,11 @@ sub xml_loc {
     return $self->share_loc('/xml/'. $file);
 }
 
-# add file to read-only dir loc, images subdir
+# add file to generated dir loc, images subdir
 
 sub image_loc {
     my ($self, $file) = @_;
-    return $self->share_loc('/images/' . $file);
+    return $self->cache_loc('/images/' . $file);
 }
 
 # add file to generated dir loc, data subdir
