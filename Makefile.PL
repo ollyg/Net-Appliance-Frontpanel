@@ -16,6 +16,7 @@ requires      'List::Util'     => 0;
 requires      'Carp'           => 0;
 requires      'File::Basename' => 0;
 requires      'File::ShareDir' => 0;
+requires      'Getopt::Long'   => 0;
 
 # test_requires 'Test::More'       => '0.47';
 
