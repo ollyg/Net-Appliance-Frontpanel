@@ -110,8 +110,8 @@ sub BUILD {
         $self->spec->{image} =
             $self->config->port_db->{ $self->spec->{type} }->{ $status };
 
-        $self->make_imagemap_text;
         $self->load_or_make_image;
+        $self->make_imagemap_text;
     }
     else {
         $self->logger->error('        skipping rendering, no data from Source');

@@ -22,13 +22,13 @@ sub transform_map {
 
 sub rotate_map_by {
     my ($self, $degrees) = @_;
-
     my $process_for = {
-        90  => q{' coords="'. (join ',', -$2+$x,$1,-$4+$y,$3) .'" '},
+        90  => q{' coords="'. (join ',', -$2+$y,$1,-$4+$y,$3) .'" '},
         180 => q{' coords="'. (join ',', -$1+$x,-$2+$y,-$3+$x,-$4+$y) .'" '},
         270 => q{' coords="'. (join ',', $2,-$1+$x,$4,-$3+$x) .'" '},
     };
 
+    return unless exists $process_for->{$degrees};
     $self->transform_map( $process_for->{$degrees} );
 }
 

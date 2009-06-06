@@ -65,7 +65,7 @@ sub BUILD {
         });
         
         # shift imagemap down, and copy
-        $chassis->transpose_map(y => $current_height);
+        $chassis->transpose_map(y => $current_height) if $current_height > 1;
         $self->imagemap( $self->imagemap . $chassis->imagemap );
 
         # paste chassis
