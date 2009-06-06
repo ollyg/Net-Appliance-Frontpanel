@@ -70,7 +70,7 @@ has 'cache_dir' => (
 sub _build_cache_dir {
     my $self = shift;
     return ($self->stash->{fp_cache_dir}
-        || File::ShareDir::module_dir('Net::Appliance::Frontpanel'));
+        || File::ShareDir::dist_dir('Net-Appliance-Frontpanel'));
 #        || '/var/tmp/frontpanel');
 }
 
