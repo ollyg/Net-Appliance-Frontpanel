@@ -63,7 +63,7 @@ port coloured according to its state.
 In addition, you can generate an HTML imagemap for this picture, with tooltip
 information and a configurable hyperlink for each port.
 
-=head2 REQUIREMENTS
+=head1 REQUIREMENTS
 
 Naturally, the module needs to learn about your device and its current state.
 The default position is to integrate with the Netdisco Network Management
@@ -73,6 +73,53 @@ The module uses a number of image files to build up a full frontpanel picture.
 These images are supplied by the hardware manufacturer (e.g. Cisco) to
 licensed customers, so neither the Netdisco team nor this module's author can
 provide them to you.
+
+=head1 INSTALLATION
+
+=head2 XML Data Sources
+
+The module ships with a set of XML files which describe many Cisco switches.
+These are located somewhere in your Perl C<@INC> path, which can be viewed
+using the C<perl -V> command on your system.  In a future release there will
+be a secondary folder into which you can drop your own XML data source, to
+extend support to other devices.
+
+=head2 Configuration Data Source
+
+If you have Netdisco installed, and its configuration file is located at
+C</etc/netdisco/netdisco.conf> then you do not need to configure the data
+source.
+
+If you have Netdisco installed, but store your configuration file elsewhere,
+then pass the C<configfile> parameter to the constructor, like so:
+
+ my $panel = Net::Appliance::Frontpanel->new(
+     configfile => '/usr/local/netdisco/netdisco.conf',
+     ip => '192.168.0.1',
+ );
+
+It's possible to use a data source other than Netdisco, so long as you write a
+small module to satisfy a simple API. You need to create a I<Source>, and pass
+its name in the constructor like so:
+
+ my $panel = Net::Appliance::Frontpanel->new(
+     source => 'MyNewSource',
+     ip => '192.168.0.1',
+ );
+
+The new Source is a module which contains a number of subroutine which return
+information required to build the frontpanel (e.g. the results of a poll of
+ENTITY-MIB upon the device). The default Source is C<Netdisco>, which connects
+to the Netdisco database to retrieve this data, but your module could do other
+things. You are advised to look at the source for the
+C<Net::Appliance::Frontpanel::Config::Source::Netdisco> module for some
+guidance (until the API stabilizes and is documented).
+
+=head2 Device Images
+
+
+
+=head1 CONFIGURATION
 
 =head1 NEW DEVICES
 
@@ -176,9 +223,10 @@ are split into two groups of 12, and that the port numbers count up from left
 to right, with odd numbers on the top row and even numbers on the bottom row.
 This is all described in the C<portGroup> element, which is a convenience to
 save having to write out (and calculate the layout of) 12 separate C<port>
-elements.  The ports in a port group I<must> all be of the same type. The
-C<type> attribute tells this module which port to look up in C<port.xml> to
-find the image to draw. The C<width> and C<height> attributes say how large
+elements.  The ports in a port group I<must> all be of the same type.
+
+The C<type> attribute tells this module which port to look up in C<port.xml>
+to find the image to draw. The C<width> and C<height> attributes say how large
 this port group is (6 x 2 = 12 ports, in a bunch which is six wide and two
 high). The C<x> and C<y> attributes say where the top left of the port group
 is in pixels, relative to the top left of the chassis image itself, and
