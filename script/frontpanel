@@ -56,8 +56,8 @@ usage:
                                      Output PNG of frontpanel image for specified device
 options:
 
-  --configfile          Specify alternate config file to Source driver
-  --source <Source>     Use a diffrent Source driver
+  --configfile=<file>   Specify alternate config file to Source driver
+  --source=<Source>     Use a diffrent Source driver
 
 HELPEND
 
