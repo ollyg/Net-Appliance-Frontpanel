@@ -9,6 +9,7 @@ requires      'XML::LibXSLT'   => 0;
 requires      'HTML::Entities' => 0;
 requires      'URI::Escape'    => 0;
 requires      'Config::Any'    => 0;
+requires      'Config::Tiny'   => 0;
 requires      'Imager'         => 0;
 requires      'DBI'            => 0;
 

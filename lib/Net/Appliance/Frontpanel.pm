@@ -242,6 +242,10 @@ Config::Any
 
 =item *
 
+Config::Tiny
+
+=item *
+
 Imager
 
 =item *
