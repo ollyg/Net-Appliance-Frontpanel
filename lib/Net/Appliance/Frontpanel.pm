@@ -1,7 +1,7 @@
 package Net::Appliance::Frontpanel;
 use Moose;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 $VERSION = eval $VERSION; # numify for warning-free dev releases
 
 use Net::Appliance::Frontpanel::Config;

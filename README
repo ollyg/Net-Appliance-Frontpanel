@@ -178,6 +178,10 @@ DEPENDENCIES
 
     *   Moose
 
+    *   MooseX::LogDispatch
+
+    *   MooseX::Object::Pluggable
+
     *   XML::LibXML
 
     *   XML::LibXSLT
@@ -187,6 +191,8 @@ DEPENDENCIES
     *   URI::Escape
 
     *   Config::Any
+
+    *   Config::Tiny
 
     *   Imager
 
