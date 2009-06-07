@@ -4,6 +4,8 @@ perl_version '5.008001';
 all_from      'lib/Net/Appliance/Frontpanel.pm';
 
 requires      'Moose'          => 0;
+requires      'MooseX::LogDispatch'       => 0;
+requires      'MooseX::Object::Pluggable' => 0;
 requires      'XML::LibXML'    => 0;
 requires      'XML::LibXSLT'   => 0;
 requires      'HTML::Entities' => 0;

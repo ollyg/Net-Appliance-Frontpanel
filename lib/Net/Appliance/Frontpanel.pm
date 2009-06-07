@@ -222,6 +222,14 @@ Moose
 
 =item *
 
+MooseX::LogDispatch
+
+=item *
+
+MooseX::Object::Pluggable
+
+=item *
+
 XML::LibXML
 
 =item *
